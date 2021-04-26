@@ -30,7 +30,7 @@ public class Flight {
     }
 
     /**
-     * The method creates a new entry in the Flighs table to add a new flight to
+     * The method creates a new entry in the Flights table to add a new flight to
      * the board, sets “available” to the same value as “seats“. A true value is
      * returned by the method if the flight is successfully inserted.
      *
