@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package finalproject;
 
 import java.util.*;
@@ -16,8 +11,7 @@ public class Client {
     private int passNumber;
     private int contact;
     
-    public boolean bookASeat(String fn){
-        
+    public boolean bookASeat(String fn){ 
         return false;
     }
     
@@ -31,7 +25,7 @@ public class Client {
         return null;
     }
     
-    public List<Flight> searchFlightByDuration(String origin){
+    public List<Flight> searchFlightByDuration(int d){
         
         return null;
     }

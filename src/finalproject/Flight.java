@@ -21,12 +21,12 @@ public class Flight {
         return false;
     }
     
-    public boolean removerFlight(String flightn){
+    public boolean removerFlight(String flightN){
         
         return false;
     }
     
-    public boolean updateFlightData(String flightn, String field, String newValue){
+    public boolean updateFlightData(String flightN, String field, String newValue){
         
         return false;
     }
@@ -41,9 +41,13 @@ public class Flight {
         return false;
     }
     
-    public Map<String,String> viewBookedFlights(){
+    public static Map<String,String> viewBoard(){
         
         return null;
     }
     
+    public static Map<String,String> viewBookedFlights(){
+        
+        return null;
+    }   
 }
