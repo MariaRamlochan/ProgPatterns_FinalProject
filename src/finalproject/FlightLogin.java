@@ -27,8 +27,8 @@ public class FlightLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        managerButton = new javax.swing.JButton();
+        clientButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -37,11 +37,11 @@ public class FlightLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton3.setText("Manager");
+        managerButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        managerButton.setText("Manager");
 
-        jButton4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton4.setText("Client");
+        clientButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        clientButton.setText("Client");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Enter as a Manager");
@@ -72,10 +72,10 @@ public class FlightLogin extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(197, 197, 197)
-                        .addComponent(jButton3))
+                        .addComponent(managerButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(208, 208, 208)
-                        .addComponent(jButton4))
+                        .addComponent(clientButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(165, 165, 165)
                         .addComponent(jLabel4))
@@ -94,13 +94,13 @@ public class FlightLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(28, 28, 28)
-                .addComponent(jButton3)
+                .addComponent(managerButton)
                 .addGap(53, 53, 53)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(clientButton)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -143,12 +143,12 @@ public class FlightLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton clientButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton managerButton;
     // End of variables declaration//GEN-END:variables
 }
