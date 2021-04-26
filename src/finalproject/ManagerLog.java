@@ -72,7 +72,7 @@ public class ManagerLog extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setText("View Reserved Flights");
 
-        addFlightTextField.setText("jTextField1");
+        addFlightTextField.setText("jTestField1");
 
         removeFlightTextField.setText("jTextField2");
 

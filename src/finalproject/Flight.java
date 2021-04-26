@@ -7,6 +7,7 @@ import java.util.*;
  * @author maria
  */
 public class Flight {
+
     private String flightN;
     private String name;
     private String origin;
@@ -27,40 +28,97 @@ public class Flight {
         this.available = available;
         this.amount = amount;
     }
-    
-    
-    public boolean addFlight(Flight flight){
-        
+
+    /**
+     * The method creates a new entry in the Flighs table to add a new flight to
+     * the board, sets “available” to the same value as “seats“. A true value is
+     * returned by the method if the flight is successfully inserted.
+     *
+     * @param flight
+     * @return
+     */
+    public boolean addFlight(Flight flight) {
+
         return false;
     }
-    
-    public boolean removerFlight(String flightN){
-        
+
+    /**
+     * The record with the flight number given as parameter is removed from the
+     * Flights table. A true value is returned by the method if the flight is
+     * successfully removed.
+     *
+     * @param flightN
+     * @return
+     */
+    public boolean removerFlight(String flightN) {
+
         return false;
     }
-    
-    public boolean updateFlightData(String flightN, String field, String newValue){
-        
+
+    /**
+     * Change the value of any attribute of a record with the same flight number
+     * in the Flights table. This method allows the manager to change the value
+     * of the flight origin, its destination, or duration. A true value is
+     * returned by the method if the update was successful.
+     *
+     * @param flightN
+     * @param field
+     * @param newValue
+     * @return
+     */
+    public boolean updateFlightData(String flightN, String field, String newValue) {
+
         return false;
     }
-    
-    public boolean issueTicket(Client c){
-        
+
+    /**
+     * To issue a ticket number or book a seat the availability of seats should
+     * be checked. If a seat is available (the value of “available” is greater
+     * than 0 in “Flights” table), the table should be updated and the value of
+     * available should be decreased by one. A new entry in “ReservedFlights”
+     * table is added. The two methods return true if the flight was
+     * successfully booked.
+     *
+     * @param c
+     * @return
+     */
+    public boolean issueTicket(Client c) {
+
         return false;
     }
-    
-    public boolean cancelFlight(int ticket, int passN){
-        
+
+    /**
+     * To cancel a flight, the ticket number and the client passport number
+     * should be verified. If an entry in the ReservedFlights table with the
+     * same ticket number and the same password number exists, then it should be
+     * removed from the table, and the value of “available” in Flights table
+     * will be increased by one. The two methods return true if the flight was
+     * successfully cancelled.
+     *
+     * @param ticket
+     * @param passN
+     * @return
+     */
+    public boolean cancelFlight(int ticket, int passN) {
+
         return false;
     }
-    
-    public static Map<String,String> viewBoard(){
-        
+
+    /**
+     * the two methods return a map containing all data retrieved from the
+     * Flights table. The key of the map is “flightN”. All flights should be
+     * sorted by “flightN”. viewFlightBoard() displays only flights with
+     * available seats.
+     *
+     * @return
+     */
+    public static Map<String, String> viewBoard() {
+
         return null;
     }
-    
-    public static Map<String,String> viewBookedFlights(){
-        
+
+    public static Map<String, String> viewBookedFlights() {
+
         return null;
-    }   
+    }
 }
