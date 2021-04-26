@@ -7,9 +7,9 @@ import java.util.*;
  * @author maria
  */
 public class Client {
-    private String fullName;
+    private String fullName; //full name of the client
     private int passNumber;
-    private int contact;
+    private int contact;    //contact number of the client
     
     public boolean bookASeat(String fn){ 
         return false;
