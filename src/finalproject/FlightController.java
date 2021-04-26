@@ -10,8 +10,12 @@ import java.util.*;
 public class FlightController {
     private List<Flight> model;
     private FlightView view;
-    
     private final Connection conn = FlightDBConnection.getInstance();
+    
+    public FlightController (List<Flight> model, FlightView view) {
+        this.model = model;
+        this.view = view;
+    }
     
     public void createFlightsTable(String sqlStatement) {
         try(Statement stmt = conn.createStatement()) {

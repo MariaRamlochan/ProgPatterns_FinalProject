@@ -15,6 +15,19 @@ public class Flight {
     private int seats;
     private boolean available;
     private double amount;
+
+    public Flight(String flightN, String name, String origin, String dest,
+            double duration, int seats, boolean available, double amount) {
+        this.flightN = flightN;
+        this.name = name;
+        this.origin = origin;
+        this.dest = dest;
+        this.duration = duration;
+        this.seats = seats;
+        this.available = available;
+        this.amount = amount;
+    }
+    
     
     public boolean addFlight(Flight flight){
         
