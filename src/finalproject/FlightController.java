@@ -10,7 +10,9 @@ import java.util.*;
 public class FlightController {
     private List<Flight> model;
     private FlightView view;
-    private final Connection conn = FlightDBConnection.getInstance();
+    private final Connection flightConn = FlightDBConnection.getInstance();
+    private final Connection clientConn = ClientDBConnection.getInstance();
+    private final Connection reserveConn = ReserveDBConnection.getInstance();
     
     public FlightController (List<Flight> model, FlightView view) {
         this.model = model;
@@ -18,7 +20,7 @@ public class FlightController {
     }
     
     public void createFlightsTable(String sqlStatement) {
-        try(Statement stmt = conn.createStatement()) {
+        try(Statement stmt = flightConn.createStatement()) {
             stmt.executeUpdate("DROP TABLE IF EXIST Flights;");
             stmt.executeUpdate(sqlStatement); 
         } catch (Exception e) {
@@ -28,7 +30,7 @@ public class FlightController {
     }
     
     public void createClientsTable(String sqlStatement) {
-        try(Statement stmt = conn.createStatement()) {
+        try(Statement stmt = clientConn.createStatement()) {
             stmt.executeUpdate("DROP TABLE IF EXIST Clients;");
             stmt.executeUpdate(sqlStatement); 
         } catch (Exception e) {
@@ -38,7 +40,7 @@ public class FlightController {
     }
     
     public void createReservedFlightsTable(String sqlStatement) {
-        try(Statement stmt = conn.createStatement()) {
+        try(Statement stmt = reserveConn.createStatement()) {
             stmt.executeUpdate("DROP TABLE IF EXIST ReservedFlights;");
             stmt.executeUpdate(sqlStatement); 
         } catch (Exception e) {
