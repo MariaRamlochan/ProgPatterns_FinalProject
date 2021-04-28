@@ -49,6 +49,7 @@ public class Flight {
                     + flight.duration + "',' " + flight.seats + "',' "
                     + flight.available + "',' " + flight.amount + "');";
                 System.out.println("sql: " + sql);
+                stmt.execute(sql);
                 return true;
             } 
         } catch (Exception e) {
