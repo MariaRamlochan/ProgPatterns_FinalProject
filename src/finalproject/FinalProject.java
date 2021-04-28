@@ -32,10 +32,10 @@ public class FinalProject {
     public static List<Flight> retrieveData()
     { 
      Flight[] listOfStudents = { 
-         new Flight("AirCanada", "Boeing 737 Max", "Montreal", "Amsterdam", 555, 204, true, 1115), 
-         new Flight("WestJet", "Boeing 737", "Toronto", "London", 405, 130, true, 635),
-         new Flight("Quatar Airways", "Boeing 787 Breamliner", "Montreal", "Doha", 725, 248, true, 3093),
-         new Flight("Caribean Airlines", "Boeing 800", "Toronto", "Guyana", 1200, 168, true, 721)};
+         new Flight("1001", "Boeing 737 Max", "Montreal", "Amsterdam", 555, 204, true, 1115), 
+         new Flight("1002", "Boeing 737", "Toronto", "London", 405, 130, true, 635),
+         new Flight("1003", "Boeing 787 Breamliner", "Montreal", "Doha", 725, 248, true, 3093),
+         new Flight("1004", "Boeing 800", "Toronto", "Guyana", 1200, 168, true, 721)};
         
      return new ArrayList(Arrays.asList(listOfStudents));  
     }
