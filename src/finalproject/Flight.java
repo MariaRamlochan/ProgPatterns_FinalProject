@@ -1,5 +1,6 @@
 package finalproject;
 
+import java.sql.*;
 import java.util.*;
 
 /**
@@ -16,6 +17,7 @@ public class Flight {
     private int seats;
     private boolean available;
     private double amount;
+    private final Connection conn = FlightDBConnection.getInstance();
 
     public Flight(String flightN, String name, String origin, String dest,
             double duration, int seats, boolean available, double amount) {
@@ -38,7 +40,21 @@ public class Flight {
      * @return
      */
     public boolean addFlight(Flight flight) {
-
+        try (Statement stmt = conn.createStatement()) {
+            if (available = true) {
+                String sql = "INSERT INTO Flights (flightN, name, origin, dest, "
+                    + "duration, seats, available, amount) " 
+                    + "VALUES (" + flight.flightN + ", '" + flight.name + "',' " 
+                    + flight.origin + "',' " + flight.dest + "',' " 
+                    + flight.duration + "',' " + flight.seats + "',' "
+                    + flight.available + "',' " + flight.amount + "');";
+                System.out.println("sql: " + sql);
+                return true;
+            } 
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
         return false;
     }
 
