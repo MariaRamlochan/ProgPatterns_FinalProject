@@ -11,7 +11,7 @@ public class Client {
     private String fullName; //full name of the client
     private int passNumber;
     private int contact;    //contact number of the client
-     private final Connection clientConn = ClientDBConnection.getInstance();
+    private final Connection clientConn = ClientDBConnection.getInstance();
     
     public boolean bookASeat(String fn){ 
         Flight flight;

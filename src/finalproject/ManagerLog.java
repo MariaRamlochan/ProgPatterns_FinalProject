@@ -83,6 +83,11 @@ public class ManagerLog extends javax.swing.JFrame {
         cancelFlightTextField.setText("jTextField5");
 
         addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         removeButton.setText("Remove");
 
@@ -194,6 +199,10 @@ public class ManagerLog extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        
+    }//GEN-LAST:event_addButtonActionPerformed
 
     /**
      * @param args the command line arguments
