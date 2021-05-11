@@ -19,6 +19,9 @@ public class Flight {
     private double amount;
     private final Connection conn = FlightDBConnection.getInstance();
 
+    public Flight() {
+        
+    }
     public Flight(String flightN, String name, String origin, String dest,
             double duration, int seats, boolean available, double amount) {
         this.flightN = flightN;
@@ -112,7 +115,6 @@ public class Flight {
                     + flight.origin + "',' " + flight.dest + "',' " 
                     + flight.duration + "',' " + flight.seats + "',' "
                     + flight.available + "',' " + flight.amount + "');";
-                System.out.println("sql: " + sql);
                 stmt.execute(sql);
                 return true;
             } 

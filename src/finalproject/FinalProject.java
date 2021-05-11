@@ -15,6 +15,7 @@ public class FinalProject {
        List<Flight> model= retrieveData();
        FlightView view = new FlightView();
        FlightController controller = new FlightController(model, view);
+       Flight flight = new Flight();
        String SQL_CREATE_Table = "CREATE TABLE FLIGHTS "
                     + "(FLIGHTN TEXT PRIMARY KEY         NOT NULL,"
                     + " NAME                        TEXT NOT NULL,"
@@ -27,11 +28,8 @@ public class FinalProject {
        
        controller.createFlightsTable(SQL_CREATE_Table);
        System.out.println("TABLE FLIGHTS CREATED");
-       model.forEach((flight) -> {controller.addFlight(flight);});
-       controller.updateView(controller.getAllFlights());
-
-       
-        
+       model.forEach((fl) -> { flight.addFlight(fl); });
+       controller.updateView(controller.getAllFlights()); 
     }
     public static List<Flight> retrieveData()
     { 

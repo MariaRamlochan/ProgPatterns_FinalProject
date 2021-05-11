@@ -50,27 +50,6 @@ public class FlightController {
         }
     }
 
-    public void addFlight(Flight flight) {   // implement getAll() : returns  map
-
-        //try ()  try with resources
-        try (
-            Statement stmt = flightConn.createStatement()) {
-
-            String sql = "INSERT INTO FLIGHTS (FLIGHTN, NAME, ORIGIN, DEST, "
-                    + "DURATION, SEATS, AVAILABLE, AMOUNT) "
-                    + "VALUES (" + flight.getFlightN() + ", '" + flight.getName() 
-                    + "',' " + flight.getOrigin() + "',' " + flight.getDest() 
-                    + "',' " + flight.getDuration() + "',' " + flight.getSeats() 
-                    + "',' "+ flight.isAvailable()+ "',' " + flight.getAmount() 
-                    + "');";
-            stmt.executeUpdate(sql);
-        } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
-
-    }
-
     public Map<String, String> getAllFlights() {
         Map<String, String> map = new HashMap();
 
