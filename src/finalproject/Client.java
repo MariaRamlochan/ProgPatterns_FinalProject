@@ -13,7 +13,7 @@ public class Client {
     private int contact;    //contact number of the client
     private final Connection clientConn = ClientDBConnection.getInstance();
     
-    public boolean bookASeat(String fn){ 
+    public boolean bookASeat(String flightNum){ 
         Flight flight;
         try (Statement stmt = clientConn.createStatement()) {
             //if (flight.available = true) {

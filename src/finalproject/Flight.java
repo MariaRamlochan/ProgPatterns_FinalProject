@@ -42,8 +42,8 @@ public class Flight {
     public boolean addFlight(Flight flight) {
         try (Statement stmt = conn.createStatement()) {
             if (available = true) {
-                String sql = "INSERT INTO Flights (flightN, name, origin, dest, "
-                    + "duration, seats, available, amount) " 
+                String sql = "INSERT INTO FLIGHTS (FLIGHTN, NAME, ORIGIN, DEST, "
+                    + "DURATION, SEATS, AVAILABLE, AMOUNT) " 
                     + "VALUES (" + flight.flightN + ", '" + flight.name + "',' " 
                     + flight.origin + "',' " + flight.dest + "',' " 
                     + flight.duration + "',' " + flight.seats + "',' "

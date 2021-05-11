@@ -15,13 +15,18 @@ public class FinalProject {
        List<Flight> model= retrieveData();
        FlightView view = new FlightView();
        FlightController controller = new FlightController(model, view);
-       String SQL_CREATE_Table = "CREATE TABLE Students "
-                    + "(STUDENTID INT PRIMARY KEY     NOT NULL,"
-                    + " name                   TEXT   NOT NULL, "
-                    + " address                Text   NOT NULL) ";
+       String SQL_CREATE_Table = "CREATE TABLE FLIGHTS "
+                    + "(FLIGHTN TEXT PRIMARY KEY         NOT NULL,"
+                    + " NAME                        TEXT NOT NULL,"
+                    + " ORIGIN                      TEXT NOT NULL,"
+                    + " DEST                        TEXT NOT NULL,"
+                    + " DURATION                     INT NOT NULL,"
+                    + " SEATS                        INT NOT NULL,"
+                    + " AVAILABLE                BOOLEAN NOT NULL,"
+                    + " AMOUNT                       INT NOT NULL)";
        
        controller.createFlightsTable(SQL_CREATE_Table);
-       System.out.println("Table Flights created");
+       System.out.println("TABLE FLIGHTS CREATED");
 //       for(Flight st:model)
 //       controller.addStudent(st);
 
