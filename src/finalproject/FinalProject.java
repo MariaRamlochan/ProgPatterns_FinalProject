@@ -27,8 +27,8 @@ public class FinalProject {
        
        controller.createFlightsTable(SQL_CREATE_Table);
        System.out.println("TABLE FLIGHTS CREATED");
-//       for(Flight st:model)
-//       controller.addStudent(st);
+       model.forEach((flight) -> {controller.addFlight(flight);});
+       controller.updateView(controller.getAllFlights());
 
        
         
