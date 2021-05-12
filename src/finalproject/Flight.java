@@ -18,7 +18,7 @@ public class Flight {
     private int seats;
     private int available;
     private double amount;
-    private final Connection conn = FlightDBConnection.getInstance();
+    private static Connection flightConn = FlightDBConnection.getInstance();
 
     /**
      * Empty Constructor
@@ -57,7 +57,7 @@ public class Flight {
      */
     public boolean addFlight(Flight flight) {
         flight.available = flight.seats;
-        try (Statement stmt = conn.createStatement()) { 
+        try (Statement stmt = flightConn.createStatement()) { 
             String sql = "INSERT INTO FLIGHTS (FLIGHTN, NAME, ORIGIN, DEST, "
                     + "DURATION, SEATS, AVAILABLE, AMOUNT) "
                     + "VALUES (" + flight.flightN + ", '" + flight.name + "',' "
@@ -82,7 +82,7 @@ public class Flight {
      * @return
      */
     public boolean removerFlight(String flightN) {
-        try ( Statement stmt = conn.createStatement()) {
+        try ( Statement stmt = flightConn.createStatement()) {
             String sql = "DELETE FROM FLIGHTS WHERE FLIGHTN=" + flightN + ";";
             stmt.execute(sql);
             return true;
@@ -105,7 +105,7 @@ public class Flight {
      * @return
      */
     public boolean updateFlightData(String flightN, String field, String newValue) {
-        try ( Statement stmt = conn.createStatement()) {
+        try ( Statement stmt = flightConn.createStatement()) {
             String sql = "UPDATE FLIGHTS SET " + field + "= "+ "'" + newValue + "'"
                     + " WHERE FLIGHTN= " + flightN + ";";
             stmt.execute(sql);
@@ -129,7 +129,7 @@ public class Flight {
      * @return
      */
     public boolean issueTicket(Client c) {
-
+        
         return false;
     }
 
@@ -159,8 +159,30 @@ public class Flight {
      * @return
      */
     public static Map<String, String> viewBoard() {
+        Map<String, String> map = new HashMap();
 
-        return null;
+        try (Statement stmt = flightConn.createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM FLIGHTS;");
+
+            while (rs.next()) {
+                String name = rs.getString("NAME");
+                String origin = rs.getString("ORIGIN");
+                String dest = rs.getString("DEST");
+                int duration = rs.getInt("DURATION");
+                int seats = rs.getInt("SEATS");
+                int available = rs.getInt("AVAILABLE");
+                int amount = rs.getInt("AMOUNT");
+
+                map.put(rs.getString("FLIGHTN"), " NAME: " + name + ", ORIGIN: " 
+                        + origin + ", DEST: " + dest + ", DURATION: " + duration 
+                        + ", SEATS: " + seats + ", AVAILABLE: " + available 
+                        + ", AMOUNT: " + amount + "\n");
+            }
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return map;
     }
 
     public static Map<String, String> viewBookedFlights() {

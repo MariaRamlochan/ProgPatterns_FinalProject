@@ -50,33 +50,6 @@ public class FlightController {
         }
     }
 
-    public Map<String, String> getAllFlights() {
-        Map<String, String> map = new HashMap();
-
-        try (Statement stmt = flightConn.createStatement()) {
-            ResultSet rs = stmt.executeQuery("SELECT * FROM FLIGHTS;");
-
-            while (rs.next()) {
-                String name = rs.getString("NAME");
-                String origin = rs.getString("ORIGIN");
-                String dest = rs.getString("DEST");
-                int duration = rs.getInt("DURATION");
-                int seats = rs.getInt("SEATS");
-                int available = rs.getInt("AVAILABLE");
-                int amount = rs.getInt("AMOUNT");
-
-                map.put(rs.getString("FLIGHTN"), " NAME: " + name + ", ORIGIN: " 
-                        + origin + ", DEST: " + dest + ", DURATION: " + duration 
-                        + ", SEATS: " + seats + ", AVAILABLE: " + available 
-                        + ", AMOUNT: " + amount + "\n");
-            }
-        } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
-        return map;
-    }
-
     public void updateView(Map model) {
         FlightView.printFlightDetails(model);
     }

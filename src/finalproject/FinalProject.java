@@ -29,15 +29,15 @@ public class FinalProject {
        controller.createFlightsTable(SQL_CREATE_Table);
        System.out.println("TABLE FLIGHTS CREATED");
        model.forEach((fl) -> { flight.addFlight(fl); });
-       controller.updateView(controller.getAllFlights());
+       controller.updateView(Flight.viewBoard());
        
        System.out.println("\nRevome Flight Number 1003");
        flight.removerFlight("1003");
-       controller.updateView(controller.getAllFlights());
+       controller.updateView(Flight.viewBoard());
        
        System.out.println("\nUpdating Flight 1004 to go to Hawaii");
-       flight.updateFlightData("1004", "DEST", "300");
-       controller.updateView(controller.getAllFlights());
+       flight.updateFlightData("1004", "DEST", "Hawaii");
+       controller.updateView(Flight.viewBoard());
        
     }
     public static List<Flight> retrieveData()
