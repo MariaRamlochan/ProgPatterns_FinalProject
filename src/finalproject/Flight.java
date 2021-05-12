@@ -186,8 +186,29 @@ public class Flight {
     }
 
     public static Map<String, String> viewBookedFlights() {
+        Map<String, String> map = new HashMap();
 
-        return null;
+        try (Statement stmt = flightConn.createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM RESERVEDFLIGHTS;");
+
+            while (rs.next()) {
+                String flightN = rs.getString("FLIGHTN");
+                String passNum = rs.getString("PASSNUM");
+                int flName = rs.getInt("FLNAME");
+                int issueDate = rs.getInt("ISSUEDATE");
+                int contact = rs.getInt("CONTACT");
+                int amount = rs.getInt("AMOUNT");
+
+                map.put(rs.getString("TICKETN"), " FLIGHTN: " + flightN 
+                        + ", PASSNUM: " + passNum + ", FLNAME: " + flName 
+                        + ", ISSUEDATE: " + issueDate + ", CONTACT: " + contact 
+                        + ", AMOUNT: " + amount + "\n");
+            }
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return map;
     }
 
     public String getFlightN() {

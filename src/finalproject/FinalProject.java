@@ -16,18 +16,42 @@ public class FinalProject {
        FlightView view = new FlightView();
        FlightController controller = new FlightController(model, view);
        Flight flight = new Flight();
-       String SQL_CREATE_Table = "CREATE TABLE FLIGHTS "
-                    + "(FLIGHTN TEXT PRIMARY KEY         NOT NULL,"
-                    + " NAME                        TEXT NOT NULL,"
-                    + " ORIGIN                      TEXT NOT NULL,"
-                    + " DEST                        TEXT NOT NULL,"
-                    + " DURATION                     INT NOT NULL,"
-                    + " SEATS                        INT NOT NULL,"
-                    + " AVAILABLE                    INT NOT NULL,"
-                    + " AMOUNT                       INT NOT NULL)";
+       String SQL_CREATE_TABLE_FLIGHTS = "CREATE TABLE FLIGHTS "
+                    + "(FLIGHTN TEXT PRIMARY KEY      NOT NULL,"
+                    + " NAME                     TEXT NOT NULL,"
+                    + " ORIGIN                   TEXT NOT NULL,"
+                    + " DEST                     TEXT NOT NULL,"
+                    + " DURATION                  INT NOT NULL,"
+                    + " SEATS                     INT NOT NULL,"
+                    + " AVAILABLE                 INT NOT NULL,"
+                    + " AMOUNT                    INT NOT NULL)";
        
-       controller.createFlightsTable(SQL_CREATE_Table);
+       String SQL_CREATE_TABLE_CLIENTS = "CREATE TABLE CLIENTS "
+                    + "(PASSNUM INT PRIMARY KEY       NOT NULL,"
+                    + " FULLNAME                 TEXT NOT NULL,"
+                    + " CONTACT                   INT NOT NULL)";
+       
+       String SQL_CREATE_TABLE_RESERVEDFLIGHTS = "CREATE TABLE RESERVEDFLIGHTS "
+                    + "(TICKETN INT PRIMARY KEY       NOT NULL,"
+                    + " FLIGHTN                  TEXT NOT NULL,"
+                    + " PASSNUM                   INT NOT NULL,"
+                    + " FLNAME                   TEXT NOT NULL,"
+                    + " ISSUEDATE                DATE NOT NULL,"
+                    + " CONTACT                   INT NOT NULL,"
+                    + " AMOUNT                    INT NOT NULL,"
+                    + " CONSTRAINT FK_RESERVE_FLIGHN FOREIGN KEY(FLIGHTN)"
+                    + " REFERENCES FLIGHTS(FLIGHTN),"
+                    + " CONSTRAINT FK_RESERVE_PASSNUM FOREIGN KEY(PASSNUM)"
+                    + " REFERENCES CLIENTS(PASSNUM))";
+       
+       controller.createFlightsTable(SQL_CREATE_TABLE_FLIGHTS);
        System.out.println("TABLE FLIGHTS CREATED");
+       controller.createClientsTable(SQL_CREATE_TABLE_CLIENTS);
+       System.out.println("TABLE CLIENTS CREATED");
+       controller.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
+       System.out.println("TABLE RESERVEDFLIGHTS CREATED");
+       
+        System.out.println("\nView Board");
        model.forEach((fl) -> { flight.addFlight(fl); });
        controller.updateView(Flight.viewBoard());
        
@@ -49,6 +73,5 @@ public class FinalProject {
          new Flight("1004", "Boeing 800", "Toronto", "Guyana", 1200, 168, 721)};
         
      return new ArrayList(Arrays.asList(listOfStudents));  
-    }
-    
+    } 
 }
