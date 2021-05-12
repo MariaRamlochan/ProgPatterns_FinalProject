@@ -62,7 +62,7 @@ public class FlightController {
                 String dest = rs.getString("DEST");
                 int duration = rs.getInt("DURATION");
                 int seats = rs.getInt("SEATS");
-                boolean available = rs.getBoolean("AVAILABLE");
+                int available = rs.getInt("AVAILABLE");
                 int amount = rs.getInt("AMOUNT");
 
                 map.put(rs.getString("FLIGHTN"), " NAME: " + name + ", ORIGIN: " 

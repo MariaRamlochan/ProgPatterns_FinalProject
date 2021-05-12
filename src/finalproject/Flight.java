@@ -16,7 +16,7 @@ public class Flight {
     private String dest;
     private double duration;
     private int seats;
-    private boolean available;
+    private int available;
     private double amount;
     private final Connection conn = FlightDBConnection.getInstance();
 
@@ -24,7 +24,6 @@ public class Flight {
      * Empty Constructor
      */
     public Flight() {
-
     }
 
     /**
@@ -35,18 +34,16 @@ public class Flight {
      * @param dest the flight's destination
      * @param duration the flight's duration
      * @param seats the number of seats in the flight
-     * @param available the availability of the flight
      * @param amount the amount the flight cost
      */
     public Flight(String flightN, String name, String origin, String dest,
-            double duration, int seats, boolean available, double amount) {
+            double duration, int seats, double amount) {
         this.flightN = flightN;
         this.name = name;
         this.origin = origin;
         this.dest = dest;
         this.duration = duration;
         this.seats = seats;
-        this.available = available;
         this.amount = amount;
     }
 
@@ -59,17 +56,16 @@ public class Flight {
      * @return
      */
     public boolean addFlight(Flight flight) {
-        try (Statement stmt = conn.createStatement()) {
-            if (available = true) {
-                String sql = "INSERT INTO FLIGHTS (FLIGHTN, NAME, ORIGIN, DEST, "
-                        + "DURATION, SEATS, AVAILABLE, AMOUNT) "
-                        + "VALUES (" + flight.flightN + ", '" + flight.name + "',' "
-                        + flight.origin + "',' " + flight.dest + "',' "
-                        + flight.duration + "',' " + flight.seats + "',' "
-                        + flight.available + "',' " + flight.amount + "');";
-                stmt.execute(sql);
-                return true;
-            }
+        flight.available = flight.seats;
+        try (Statement stmt = conn.createStatement()) { 
+            String sql = "INSERT INTO FLIGHTS (FLIGHTN, NAME, ORIGIN, DEST, "
+                    + "DURATION, SEATS, AVAILABLE, AMOUNT) "
+                    + "VALUES (" + flight.flightN + ", '" + flight.name + "',' "
+                    + flight.origin + "',' " + flight.dest + "',' "
+                    + flight.duration + "',' " + flight.seats + "',' "
+                    + flight.available + "',' " + flight.amount + "');";
+            stmt.execute(sql);
+            return true;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
@@ -220,11 +216,11 @@ public class Flight {
         this.seats = seats;
     }
 
-    public boolean isAvailable() {
+    public int getAvailable() {
         return available;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(int available) {
         this.available = available;
     }
 

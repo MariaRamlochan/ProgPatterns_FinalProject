@@ -23,7 +23,7 @@ public class FinalProject {
                     + " DEST                        TEXT NOT NULL,"
                     + " DURATION                     INT NOT NULL,"
                     + " SEATS                        INT NOT NULL,"
-                    + " AVAILABLE                BOOLEAN NOT NULL,"
+                    + " AVAILABLE                    INT NOT NULL,"
                     + " AMOUNT                       INT NOT NULL)";
        
        controller.createFlightsTable(SQL_CREATE_Table);
@@ -35,18 +35,18 @@ public class FinalProject {
        flight.removerFlight("1003");
        controller.updateView(controller.getAllFlights());
        
-       System.out.println("\nUpdating Flight 1004 ");
-       flight.updateFlightData("1004", "DEST", "Hawaii");
+       System.out.println("\nUpdating Flight 1004 to go to Hawaii");
+       flight.updateFlightData("1004", "DEST", "300");
        controller.updateView(controller.getAllFlights());
        
     }
     public static List<Flight> retrieveData()
     { 
      Flight[] listOfStudents = { 
-         new Flight("1001", "Boeing 737 Max", "Montreal", "Amsterdam", 555, 204, true, 1115), 
-         new Flight("1002", "Boeing 737", "Toronto", "London", 405, 130, true, 635),
-         new Flight("1003", "Boeing 787 Breamliner", "Montreal", "Doha", 725, 248, true, 3093),
-         new Flight("1004", "Boeing 800", "Toronto", "Guyana", 1200, 168, true, 721)};
+         new Flight("1001", "Boeing 737 Max", "Montreal", "Amsterdam", 555, 204, 1115), 
+         new Flight("1002", "Boeing 737", "Toronto", "London", 405, 130, 635),
+         new Flight("1003", "Boeing 787 Breamliner", "Montreal", "Doha", 725, 248, 3093),
+         new Flight("1004", "Boeing 800", "Toronto", "Guyana", 1200, 168, 721)};
         
      return new ArrayList(Arrays.asList(listOfStudents));  
     }
