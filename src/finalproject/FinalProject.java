@@ -14,7 +14,7 @@ public class FinalProject {
     public static void main(String[] args) {
        List<Flight> model= retrieveData();
        FlightView view = new FlightView();
-       FlightController controller = new FlightController(model, view);
+       Controller controller = new Controller(model, view);
        Flight flight = new Flight();
        String SQL_CREATE_TABLE_FLIGHTS = "CREATE TABLE FLIGHTS "
                     + "(FLIGHTN TEXT PRIMARY KEY      NOT NULL,"
@@ -51,7 +51,7 @@ public class FinalProject {
        controller.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
        System.out.println("TABLE RESERVEDFLIGHTS CREATED");
        
-        System.out.println("\nView Board");
+       System.out.println("\nView Board");
        model.forEach((fl) -> { flight.addFlight(fl); });
        controller.updateView(Flight.viewBoard());
        

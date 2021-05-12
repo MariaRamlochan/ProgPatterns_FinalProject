@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author maria
  */
-public class FlightController {
+public class Controller {
 
     private List<Flight> model;
     private FlightView view;
@@ -15,7 +15,7 @@ public class FlightController {
     private final Connection clientConn = ClientDBConnection.getInstance();
     private final Connection reserveConn = ReserveDBConnection.getInstance();
 
-    public FlightController(List<Flight> model, FlightView view) {
+    public Controller(List<Flight> model, FlightView view) {
         this.model = model;
         this.view = view;
     }
