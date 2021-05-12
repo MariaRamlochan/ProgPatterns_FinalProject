@@ -9,6 +9,7 @@ import java.util.*;
  */
 public class Flight {
 
+    //Data members
     private String flightN;
     private String name;
     private String origin;
@@ -19,10 +20,24 @@ public class Flight {
     private double amount;
     private final Connection conn = FlightDBConnection.getInstance();
 
+    /**
+     * Empty Constructor
+     */
     public Flight() {
 
     }
 
+    /**
+     * Constructor with all data members as parameters
+     * @param flightN the flight number
+     * @param name the flight's name
+     * @param origin the flight's origin
+     * @param dest the flight's destination
+     * @param duration the flight's duration
+     * @param seats the number of seats in the flight
+     * @param available the availability of the flight
+     * @param amount the amount the flight cost
+     */
     public Flight(String flightN, String name, String origin, String dest,
             double duration, int seats, boolean available, double amount) {
         this.flightN = flightN;
@@ -72,7 +87,6 @@ public class Flight {
      */
     public boolean removerFlight(String flightN) {
         try ( Statement stmt = conn.createStatement()) {
-
             String sql = "DELETE FROM FLIGHTS WHERE FLIGHTN=" + flightN + ";";
             stmt.execute(sql);
             return true;
@@ -95,7 +109,15 @@ public class Flight {
      * @return
      */
     public boolean updateFlightData(String flightN, String field, String newValue) {
-
+        try ( Statement stmt = conn.createStatement()) {
+            String sql = "UPDATE FLIGHTS SET " + field + "= "+ "'" + newValue + "'"
+                    + " WHERE FLIGHTN= " + flightN + ";";
+            stmt.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
         return false;
     }
 

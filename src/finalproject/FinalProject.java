@@ -34,6 +34,11 @@ public class FinalProject {
        System.out.println("\nRevome Flight Number 1003");
        flight.removerFlight("1003");
        controller.updateView(controller.getAllFlights());
+       
+       System.out.println("\nUpdating Flight 1004 ");
+       flight.updateFlightData("1004", "DEST", "Hawaii");
+       controller.updateView(controller.getAllFlights());
+       
     }
     public static List<Flight> retrieveData()
     { 
