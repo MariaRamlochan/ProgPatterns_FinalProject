@@ -29,7 +29,11 @@ public class FinalProject {
        controller.createFlightsTable(SQL_CREATE_Table);
        System.out.println("TABLE FLIGHTS CREATED");
        model.forEach((fl) -> { flight.addFlight(fl); });
-       controller.updateView(controller.getAllFlights()); 
+       controller.updateView(controller.getAllFlights());
+       
+       System.out.println("\nRevome Flight Number 1003");
+       flight.removerFlight("1003");
+       controller.updateView(controller.getAllFlights());
     }
     public static List<Flight> retrieveData()
     { 

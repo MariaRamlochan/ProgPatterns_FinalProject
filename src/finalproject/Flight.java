@@ -20,8 +20,9 @@ public class Flight {
     private final Connection conn = FlightDBConnection.getInstance();
 
     public Flight() {
-        
+
     }
+
     public Flight(String flightN, String name, String origin, String dest,
             double duration, int seats, boolean available, double amount) {
         this.flightN = flightN;
@@ -35,9 +36,9 @@ public class Flight {
     }
 
     /**
-     * The method creates a new entry in the Flights table to add a new flight to
-     * the board, sets “available” to the same value as “seats“. A true value is
-     * returned by the method if the flight is successfully inserted.
+     * The method creates a new entry in the Flights table to add a new flight
+     * to the board, sets “available” to the same value as “seats“. A true value
+     * is returned by the method if the flight is successfully inserted.
      *
      * @param flight
      * @return
@@ -46,14 +47,14 @@ public class Flight {
         try (Statement stmt = conn.createStatement()) {
             if (available = true) {
                 String sql = "INSERT INTO FLIGHTS (FLIGHTN, NAME, ORIGIN, DEST, "
-                    + "DURATION, SEATS, AVAILABLE, AMOUNT) " 
-                    + "VALUES (" + flight.flightN + ", '" + flight.name + "',' " 
-                    + flight.origin + "',' " + flight.dest + "',' " 
-                    + flight.duration + "',' " + flight.seats + "',' "
-                    + flight.available + "',' " + flight.amount + "');";
+                        + "DURATION, SEATS, AVAILABLE, AMOUNT) "
+                        + "VALUES (" + flight.flightN + ", '" + flight.name + "',' "
+                        + flight.origin + "',' " + flight.dest + "',' "
+                        + flight.duration + "',' " + flight.seats + "',' "
+                        + flight.available + "',' " + flight.amount + "');";
                 stmt.execute(sql);
                 return true;
-            } 
+            }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
@@ -70,7 +71,15 @@ public class Flight {
      * @return
      */
     public boolean removerFlight(String flightN) {
+        try ( Statement stmt = conn.createStatement()) {
 
+            String sql = "DELETE FROM FLIGHTS WHERE FLIGHTN=" + flightN + ";";
+            stmt.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
         return false;
     }
 
@@ -140,7 +149,7 @@ public class Flight {
 
         return null;
     }
-    
+
     public String getFlightN() {
         return flightN;
     }
