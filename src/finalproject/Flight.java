@@ -138,7 +138,7 @@ public class Flight {
             try (Statement stmt = flightConn.createStatement()) {
                 String sql = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
                         + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
-                        + "VALUES (" + ticketN++ + ", '" + flightN + "',' "
+                        + "VALUES (" + ticketN++ + ", '" + flight + "',' "
                         + c.getPassNumber() + "',' " + c.getFullName() + "',' "
                     + Date.valueOf(LocalDate.MAX) + "',' " + c.getContact()
                         + "',' " + amount + "');";

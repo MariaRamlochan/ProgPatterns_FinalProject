@@ -75,7 +75,8 @@ public class FinalProject {
        clientController.updateView(Client.viewBoard());
        
        System.out.println("\nTrying to issue a ticket");
-        
+       flight.issueTicket(client, "1001");
+       flightController.updateView(Flight.viewBookedFlights());
        
     }
     public static List<Flight> retrieveFlightData()
