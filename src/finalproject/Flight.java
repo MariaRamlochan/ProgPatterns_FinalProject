@@ -140,7 +140,7 @@ public class Flight {
                         + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
                         + "VALUES (" + ticketN++ + ", '" + flightN + "',' "
                         + c.getPassNumber() + "',' " + c.getFullName() + "',' "
-                        + Date.valueOf(LocalDate.MAX) + "',' " + c.getContact()
+                    + Date.valueOf(LocalDate.MAX) + "',' " + c.getContact()
                         + "',' " + amount + "');";
                 stmt.execute(sql);
                 available--;
