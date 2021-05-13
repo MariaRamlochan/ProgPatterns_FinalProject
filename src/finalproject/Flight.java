@@ -1,6 +1,8 @@
 package finalproject;
 
 import java.sql.*;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -28,6 +30,7 @@ public class Flight {
 
     /**
      * Constructor with all data members as parameters
+     *
      * @param flightN the flight number
      * @param name the flight's name
      * @param origin the flight's origin
@@ -57,7 +60,7 @@ public class Flight {
      */
     public boolean addFlight(Flight flight) {
         flight.available = flight.seats;
-        try (Statement stmt = flightConn.createStatement()) { 
+        try (Statement stmt = flightConn.createStatement()) {
             String sql = "INSERT INTO FLIGHTS (FLIGHTN, NAME, ORIGIN, DEST, "
                     + "DURATION, SEATS, AVAILABLE, AMOUNT) "
                     + "VALUES (" + flight.flightN + ", '" + flight.name + "',' "
@@ -82,7 +85,7 @@ public class Flight {
      * @return
      */
     public boolean removerFlight(String flightN) {
-        try ( Statement stmt = flightConn.createStatement()) {
+        try (Statement stmt = flightConn.createStatement()) {
             String sql = "DELETE FROM FLIGHTS WHERE FLIGHTN=" + flightN + ";";
             stmt.execute(sql);
             return true;
@@ -105,8 +108,8 @@ public class Flight {
      * @return
      */
     public boolean updateFlightData(String flightN, String field, String newValue) {
-        try ( Statement stmt = flightConn.createStatement()) {
-            String sql = "UPDATE FLIGHTS SET " + field + "= "+ "'" + newValue + "'"
+        try (Statement stmt = flightConn.createStatement()) {
+            String sql = "UPDATE FLIGHTS SET " + field + "= " + "'" + newValue + "'"
                     + " WHERE FLIGHTN= " + flightN + ";";
             stmt.execute(sql);
             return true;
@@ -119,17 +122,34 @@ public class Flight {
 
     /**
      * To issue a ticket number or book a seat the availability of seats should
-     * be checked. If a seat is available (the value of “available” is greater
+     * be checked.If a seat is available (the value of “available” is greater
      * than 0 in “Flights” table), the table should be updated and the value of
      * available should be decreased by one. A new entry in “ReservedFlights”
      * table is added. The two methods return true if the flight was
      * successfully booked.
      *
      * @param c
+     * @param flight
      * @return
      */
-    public boolean issueTicket(Client c) {
-        
+    public boolean issueTicket(Client c, String flight) {
+        int ticketN = 0;
+        if (available > 0) {
+            try (Statement stmt = flightConn.createStatement()) {
+                String sql = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
+                        + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
+                        + "VALUES (" + ticketN++ + ", '" + flightN + "',' "
+                        + c.getPassNumber() + "',' " + c.getFullName() + "',' "
+                        + Date.valueOf(LocalDate.MAX) + "',' " + c.getContact()
+                        + "',' " + amount + "');";
+                stmt.execute(sql);
+                available--;
+                return true;
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
+            }
+        }
         return false;
     }
 
@@ -173,9 +193,9 @@ public class Flight {
                 int available = rs.getInt("AVAILABLE");
                 int amount = rs.getInt("AMOUNT");
 
-                map.put(rs.getString("FLIGHTN"), " NAME: " + name + ", ORIGIN: " 
-                        + origin + ", DEST: " + dest + ", DURATION: " + duration 
-                        + ", SEATS: " + seats + ", AVAILABLE: " + available 
+                map.put(rs.getString("FLIGHTN"), " NAME: " + name + ", ORIGIN: "
+                        + origin + ", DEST: " + dest + ", DURATION: " + duration
+                        + ", SEATS: " + seats + ", AVAILABLE: " + available
                         + ", AMOUNT: " + amount + "\n");
             }
         } catch (Exception e) {
@@ -199,9 +219,9 @@ public class Flight {
                 int contact = rs.getInt("CONTACT");
                 int amount = rs.getInt("AMOUNT");
 
-                map.put(rs.getString("TICKETN"), " FLIGHTN: " + flightN 
-                        + ", PASSNUM: " + passNum + ", FLNAME: " + flName 
-                        + ", ISSUEDATE: " + issueDate + ", CONTACT: " + contact 
+                map.put(rs.getString("TICKETN"), " FLIGHTN: " + flightN
+                        + ", PASSNUM: " + passNum + ", FLNAME: " + flName
+                        + ", ISSUEDATE: " + issueDate + ", CONTACT: " + contact
                         + ", AMOUNT: " + amount + "\n");
             }
         } catch (Exception e) {

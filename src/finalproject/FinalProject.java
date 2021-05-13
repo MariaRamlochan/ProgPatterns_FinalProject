@@ -63,6 +63,9 @@ public class FinalProject {
        flight.updateFlightData("1004", "DEST", "Hawaii");
        controller.updateView(Flight.viewBoard());
        
+        System.out.println("\nTrying to issue a ticket");
+        
+       
     }
     public static List<Flight> retrieveData()
     { 
