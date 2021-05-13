@@ -7,15 +7,14 @@ import java.util.*;
  *
  * @author maria
  */
-public class Controller {
+public class FlightController {
 
     private List<Flight> model;
     private FlightView view;
     private final Connection flightConn = FlightDBConnection.getInstance();
-    private final Connection clientConn = ClientDBConnection.getInstance();
     private final Connection reserveConn = ReserveDBConnection.getInstance();
 
-    public Controller(List<Flight> model, FlightView view) {
+    public FlightController(List<Flight> model, FlightView view) {
         this.model = model;
         this.view = view;
     }
@@ -23,16 +22,6 @@ public class Controller {
     public void createFlightsTable(String sqlStatement) {
         try (Statement stmt = flightConn.createStatement()) {
             stmt.executeUpdate("DROP TABLE IF EXISTS FLIGHTS;");
-            stmt.executeUpdate(sqlStatement);
-        } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
-    }
-
-    public void createClientsTable(String sqlStatement) {
-        try (Statement stmt = clientConn.createStatement()) {
-            stmt.executeUpdate("DROP TABLE IF EXISTS CLIENTS;");
             stmt.executeUpdate(sqlStatement);
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());

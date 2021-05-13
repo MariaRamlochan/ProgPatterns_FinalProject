@@ -8,15 +8,51 @@ import java.util.*;
  * @author maria
  */
 public class Client {
-    private String fullName; //full name of the client
     private int passNumber;
+    private String fullName; //full name of the client
     private int contact;    //contact number of the client
-    private final Connection clientConn = ClientDBConnection.getInstance();
+    private static Connection clientConn = ClientDBConnection.getInstance();
 
-    public Client(String fullName, int passNumber, int contact) {
-        this.fullName = fullName;
+    public Client() {
+    }
+    public Client(int passNumber, String fullName, int contact) {
         this.passNumber = passNumber;
+        this.fullName = fullName;
         this.contact = contact;
+    }
+    
+    public boolean addClient(Client client) {
+        try (Statement stmt = clientConn.createStatement()) {
+            String sql = "INSERT INTO CLIENTS (PASSNUM, FULLNAME, CONTACT) "
+                    + "VALUES (" + client.passNumber + ", '" + client.fullName 
+                    + "',' " + client.contact + "');";
+            stmt.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return false;
+    }
+    
+    public static Map<String, String> viewBoard() {
+        Map<String, String> map = new HashMap();
+
+        try (Statement stmt = clientConn.createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM CLIENTS;");
+
+            while (rs.next()) {
+                String fullName = rs.getString("FULLNAME");
+                int contact = rs.getInt("CONTACT");
+
+                map.put(rs.getString("PASSNUM"), " FULLNAME: " + fullName + ", CONTACT: "
+                        + contact + "\n");
+            }
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return map;
     }
     
     /**

@@ -12,10 +12,17 @@ public class FinalProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       List<Flight> model= retrieveData();
-       FlightView view = new FlightView();
-       Controller controller = new Controller(model, view);
+       List<Flight> flightModel = retrieveFlightData();
+       FlightView flightView = new FlightView();
+       FlightController flightController = new FlightController(flightModel, flightView);
        Flight flight = new Flight();
+       
+       List<Client> clientModel = retrieveClientData();
+       ClientView clientView = new ClientView();
+       ClientController clientController = new ClientController(clientModel, clientView);
+       Client client = new Client();
+       
+       
        String SQL_CREATE_TABLE_FLIGHTS = "CREATE TABLE FLIGHTS "
                     + "(FLIGHTN TEXT PRIMARY KEY      NOT NULL,"
                     + " NAME                     TEXT NOT NULL,"
@@ -44,37 +51,52 @@ public class FinalProject {
                     + " CONSTRAINT FK_RESERVE_PASSNUM FOREIGN KEY(PASSNUM)"
                     + " REFERENCES CLIENTS(PASSNUM))";
        
-       controller.createFlightsTable(SQL_CREATE_TABLE_FLIGHTS);
+       flightController.createFlightsTable(SQL_CREATE_TABLE_FLIGHTS);
        System.out.println("TABLE FLIGHTS CREATED");
-       controller.createClientsTable(SQL_CREATE_TABLE_CLIENTS);
+       clientController.createClientsTable(SQL_CREATE_TABLE_CLIENTS);
        System.out.println("TABLE CLIENTS CREATED");
-       controller.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
+       flightController.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
        System.out.println("TABLE RESERVEDFLIGHTS CREATED");
        
        System.out.println("\nView Board");
-       model.forEach((fl) -> { flight.addFlight(fl); });
-       controller.updateView(Flight.viewBoard());
+       flightModel.forEach((fl) -> { flight.addFlight(fl); });
+       flightController.updateView(Flight.viewBoard());
        
        System.out.println("\nRevome Flight Number 1003");
        flight.removerFlight("1003");
-       controller.updateView(Flight.viewBoard());
+       flightController.updateView(Flight.viewBoard());
        
        System.out.println("\nUpdating Flight 1004 to go to Hawaii");
        flight.updateFlightData("1004", "DEST", "Hawaii");
-       controller.updateView(Flight.viewBoard());
+       flightController.updateView(Flight.viewBoard());
        
-        System.out.println("\nTrying to issue a ticket");
+       System.out.println("\nView Client table");
+       clientModel.forEach((cl) -> { client.addClient(cl); });
+       clientController.updateView(Client.viewBoard());
+       
+       System.out.println("\nTrying to issue a ticket");
         
        
     }
-    public static List<Flight> retrieveData()
+    public static List<Flight> retrieveFlightData()
     { 
-     Flight[] listOfStudents = { 
+     Flight[] listOfFlights = { 
          new Flight("1001", "Boeing 737 Max", "Montreal", "Amsterdam", 555, 204, 1115), 
          new Flight("1002", "Boeing 737", "Toronto", "London", 405, 130, 635),
          new Flight("1003", "Boeing 787 Breamliner", "Montreal", "Doha", 725, 248, 3093),
          new Flight("1004", "Boeing 800", "Toronto", "Guyana", 1200, 168, 721)};
         
-     return new ArrayList(Arrays.asList(listOfStudents));  
+     return new ArrayList(Arrays.asList(listOfFlights));  
     } 
+    
+    public static List<Client> retrieveClientData()
+    { 
+     Client[] listOfClients = { 
+         new Client(5001, "Maria R", 911), 
+         new Client(5002, "Natsu B", 666),
+         new Client(5003, "Damon S", 999),
+         new Client(5004, "Mark I", 555)};
+        
+     return new ArrayList(Arrays.asList(listOfClients));  
+    }
 }
