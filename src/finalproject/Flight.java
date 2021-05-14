@@ -135,7 +135,7 @@ public class Flight {
      */
     public boolean issueTicket(Client c, String flight) {
         int ticketN = 0;
-        if (getAvailable() >= 0) {
+        if (getAvailable() > 0) {
             try (Statement stmt = reserveConn.createStatement()) {
                 String sql = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
                         + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "

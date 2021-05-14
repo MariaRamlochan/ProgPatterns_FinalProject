@@ -78,6 +78,10 @@ public class FinalProject {
        clientModel.forEach((cl) -> { flight.issueTicket(cl, "1001"); });
        flightController.updateView(Flight.viewBookedFlights());
        
+       System.out.println("\nTrying to issue a ticket 2");
+       clientModel.forEach((cl) -> { flight.issueTicket(cl, "1002"); });
+       flightController.updateView(Flight.viewBookedFlights());
+       
     }
     public static List<Flight> retrieveFlightData()
     { 
