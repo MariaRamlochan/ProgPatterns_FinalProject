@@ -12,6 +12,7 @@ public class Client {
     private String fullName; //full name of the client
     private int contact;    //contact number of the client
     private static Connection clientConn = ClientDBConnection.getInstance();
+    private static Connection reserveConn = ReserveDBConnection.getInstance();
 
     public Client() {
     }
@@ -85,8 +86,29 @@ public class Client {
     }
     
     public Map<String,String> viewFlightsBoard(){
-        
-        return null;
+        Map<String, String> map = new HashMap();
+
+        try (Statement stmt = clientConn.createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM RESERVEDFLIGHTS;");
+
+            while (rs.next()) {
+                String flightN = rs.getString("FLIGHTN");
+                String passNum = rs.getString("PASSNUM");
+                String flName = rs.getString("FLNAME");
+                int issueDate = rs.getInt("ISSUEDATE");
+                int cont = rs.getInt("CONTACT");
+                int amount = rs.getInt("AMOUNT");
+
+                map.put(rs.getString("TICKETN"), " FLIGHTN: " + flightN
+                        + ", PASSNUM: " + passNum + ", FLNAME: " + flName
+                        + ", ISSUEDATE: " + issueDate + ", CONTACT: " + cont
+                        + ", AMOUNT: " + amount + "\n");
+            }
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return map;
     }
 
     public String getFullName() {

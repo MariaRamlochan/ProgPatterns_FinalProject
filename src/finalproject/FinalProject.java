@@ -75,7 +75,7 @@ public class FinalProject {
        clientController.updateView(Client.viewBoard());
        
        System.out.println("\nTrying to issue a ticket");
-       flight.issueTicket(client, "1001");
+       clientModel.forEach((cl) -> { flight.issueTicket(cl, "1001"); });
        flightController.updateView(Flight.viewBookedFlights());
        
     }

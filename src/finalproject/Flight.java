@@ -21,6 +21,7 @@ public class Flight {
     private int available;
     private double amount;
     private static Connection flightConn = FlightDBConnection.getInstance();
+    private static Connection reserveConn = ReserveDBConnection.getInstance();
 
     /**
      * Empty Constructor
@@ -63,10 +64,10 @@ public class Flight {
         try (Statement stmt = flightConn.createStatement()) {
             String sql = "INSERT INTO FLIGHTS (FLIGHTN, NAME, ORIGIN, DEST, "
                     + "DURATION, SEATS, AVAILABLE, AMOUNT) "
-                    + "VALUES (" + flight.flightN + ", '" + flight.name + "',' "
-                    + flight.origin + "',' " + flight.dest + "',' "
-                    + flight.duration + "',' " + flight.seats + "',' "
-                    + flight.available + "',' " + flight.amount + "');";
+                    + "VALUES (" + flight.flightN + ", '" + flight.name + "', '"
+                    + flight.origin + "', '" + flight.dest + "', '"
+                    + flight.duration + "', '" + flight.seats + "', '"
+                    + flight.available + "', '" + flight.amount + "');";
             stmt.execute(sql);
             return true;
         } catch (Exception e) {
@@ -134,14 +135,14 @@ public class Flight {
      */
     public boolean issueTicket(Client c, String flight) {
         int ticketN = 0;
-        if (available > 0) {
-            try (Statement stmt = flightConn.createStatement()) {
+        if (getAvailable() >= 0) {
+            try (Statement stmt = reserveConn.createStatement()) {
                 String sql = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
                         + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
-                        + "VALUES (" + ticketN++ + ", '" + flight + "',' "
-                        + c.getPassNumber() + "',' " + c.getFullName() + "',' "
-                    + Date.valueOf(LocalDate.MAX) + "',' " + c.getContact()
-                        + "',' " + amount + "');";
+                        + "VALUES ('" + ticketN++ + "', '" + flight + "', '" 
+                        + c.getPassNumber() + "',' " + c.getFullName() + "', '"
+                        + Date.valueOf(LocalDate.MAX) + "',' " + c.getContact() 
+                        + "', '" + getAmount() + "');";
                 stmt.execute(sql);
                 available--;
                 return true;
@@ -208,13 +209,13 @@ public class Flight {
     public static Map<String, String> viewBookedFlights() {
         Map<String, String> map = new HashMap();
 
-        try (Statement stmt = flightConn.createStatement()) {
+        try (Statement stmt = reserveConn.createStatement()) {
             ResultSet rs = stmt.executeQuery("SELECT * FROM RESERVEDFLIGHTS;");
 
             while (rs.next()) {
                 String flightN = rs.getString("FLIGHTN");
                 String passNum = rs.getString("PASSNUM");
-                int flName = rs.getInt("FLNAME");
+                String flName = rs.getString("FLNAME");
                 int issueDate = rs.getInt("ISSUEDATE");
                 int contact = rs.getInt("CONTACT");
                 int amount = rs.getInt("AMOUNT");
