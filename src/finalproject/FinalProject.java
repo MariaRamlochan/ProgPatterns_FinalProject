@@ -62,7 +62,7 @@ public class FinalProject {
        flightModel.forEach((fl) -> { flight.addFlight(fl); });
        flightController.updateView(Flight.viewBoard());
        
-       System.out.println("\nRevome Flight Number 1003");
+       System.out.println("\nRemove Flight Number 1003");
        flight.removerFlight("1003");
        flightController.updateView(Flight.viewBoard());
        
@@ -78,9 +78,18 @@ public class FinalProject {
        clientModel.forEach((cl) -> { flight.issueTicket(cl, "1001"); });
        flightController.updateView(Flight.viewBookedFlights());
        
-       System.out.println("\nTrying to issue a ticket 2");
-       clientModel.forEach((cl) -> { flight.issueTicket(cl, "1002"); });
-       flightController.updateView(Flight.viewBookedFlights());
+        System.out.println("\nTrying to search by DEST");
+        client.searchFlightByDest("Hawaii").forEach(dest -> 
+        {System.out.println(dest.toString());});
+        
+        System.out.println("\nTrying to search by DURATION");
+        client.searchFlightByDuration(405).forEach(dur -> 
+        {System.out.println(dur.toString());});
+        
+        System.out.println("\nTrying to search by ORIGIN");
+        client.searchFlighByOrigin("Toronto").forEach(ori -> 
+        {System.out.println(ori.toString());});
+
        
     }
     public static List<Flight> retrieveFlightData()

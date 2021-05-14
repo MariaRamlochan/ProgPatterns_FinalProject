@@ -8,24 +8,27 @@ import java.util.*;
  * @author maria
  */
 public class Client {
+
     private int passNumber;
     private String fullName; //full name of the client
     private int contact;    //contact number of the client
     private static Connection clientConn = ClientDBConnection.getInstance();
+    private static Connection flightConn = FlightDBConnection.getInstance();
     private static Connection reserveConn = ReserveDBConnection.getInstance();
 
     public Client() {
     }
+
     public Client(int passNumber, String fullName, int contact) {
         this.passNumber = passNumber;
         this.fullName = fullName;
         this.contact = contact;
     }
-    
+
     public boolean addClient(Client client) {
         try (Statement stmt = clientConn.createStatement()) {
             String sql = "INSERT INTO CLIENTS (PASSNUM, FULLNAME, CONTACT) "
-                    + "VALUES (" + client.passNumber + ", '" + client.fullName 
+                    + "VALUES (" + client.passNumber + ", '" + client.fullName
                     + "',' " + client.contact + "');";
             stmt.execute(sql);
             return true;
@@ -35,7 +38,7 @@ public class Client {
         }
         return false;
     }
-    
+
     public static Map<String, String> viewBoard() {
         Map<String, String> map = new HashMap();
 
@@ -55,37 +58,115 @@ public class Client {
         }
         return map;
     }
-    
+
     /**
-     * 
+     *
      * @param flightNum
-     * @return 
+     * @return
      */
-    public boolean bookASeat(String flightNum){
+    public boolean bookASeat(String flightNum) {
         return false;
     }
-    
-    public boolean cancelResservation(int ticket){
-        
+
+    public boolean cancelResservation(int ticket) {
+
         return false;
     }
-    
-    public List<Flight> searchFlightByDest(String dest){
-        
-        return null;
+
+    public List<Flight> searchFlightByDest(String dest) {
+        List<Flight> flightList = new ArrayList<>();
+        Flight destFlight = null;
+
+        try (Statement stmt = flightConn.createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM FLIGHTS");
+
+            while (rs.next()) {
+                String destination = rs.getString("DEST");
+                String flightN = rs.getString("FLIGHTN");
+                String name = rs.getString("NAME");
+                String origin = rs.getString("ORIGIN");
+                int duration = rs.getInt("DURATION");
+                int amount = rs.getInt("AMOUNT");
+                int seats = rs.getInt("SEATS");
+
+                if (destination.equals(dest)) {
+                    destFlight = new Flight(flightN, name, origin, destination,
+                            duration, seats, amount);
+
+                    flightList.add(destFlight);
+                }
+            }
+
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return flightList;
     }
-    
-    public List<Flight> searchFlightByDuration(int d){
-        
-        return null;
+
+    public List<Flight> searchFlightByDuration(int d) {
+        List<Flight> flightList = new ArrayList<>();
+        Flight durFlight = null;
+
+        try (Statement stmt = flightConn.createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM FLIGHTS");
+
+            while (rs.next()) {
+                String destination = rs.getString("DEST");
+                String flightN = rs.getString("FLIGHTN");
+                String name = rs.getString("NAME");
+                String origin = rs.getString("ORIGIN");
+                int duration = rs.getInt("DURATION");
+                int amount = rs.getInt("AMOUNT");
+                int seats = rs.getInt("SEATS");
+
+                if (duration == d) {
+                    durFlight = new Flight(flightN, name, origin, destination,
+                            duration, seats, amount);
+
+                    flightList.add(durFlight);
+                }
+            }
+
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return flightList;
     }
-    
-    public List<Flight> searchFlighByOrigin(String origin){
-        
-        return null;
+
+    public List<Flight> searchFlighByOrigin(String ori) {
+        List<Flight> flightList = new ArrayList<>();
+        Flight oriFlight = null;
+
+        try (Statement stmt = flightConn.createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM FLIGHTS");
+
+            while (rs.next()) {
+                String destination = rs.getString("DEST");
+                String flightN = rs.getString("FLIGHTN");
+                String name = rs.getString("NAME");
+                String origin = rs.getString("ORIGIN");
+                int duration = rs.getInt("DURATION");
+                int amount = rs.getInt("AMOUNT");
+                int seats = rs.getInt("SEATS");
+
+                if (origin.equals(ori)) {
+                    oriFlight = new Flight(flightN, name, origin, destination,
+                            duration, seats, amount);
+
+                    flightList.add(oriFlight);
+                }
+            }
+
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return flightList;
     }
-    
-    public Map<String,String> viewFlightsBoard(){
+
+    public Map<String, String> viewFlightsBoard() {
         Map<String, String> map = new HashMap();
 
         try (Statement stmt = clientConn.createStatement()) {

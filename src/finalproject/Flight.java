@@ -295,4 +295,17 @@ public class Flight {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return flightN + ", " + 
+                name + ", " + 
+                origin + ", " + 
+                dest + ", " + 
+                duration + ", " + 
+                seats + ", " +  
+                amount;
+    }
+    
+    
 }
