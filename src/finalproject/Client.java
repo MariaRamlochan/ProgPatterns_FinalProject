@@ -73,6 +73,13 @@ public class Client {
         return false;
     }
 
+    /**
+     * this method retrieves all data that matches the "destination" and saves it
+     * in a List.
+     * 
+     * @param dest
+     * @return flightList
+     */
     public List<Flight> searchFlightByDest(String dest) {
         List<Flight> flightList = new ArrayList<>();
         Flight destFlight = null;
@@ -104,9 +111,16 @@ public class Client {
         return flightList;
     }
 
+    /**
+     * this method retrieves all data that matches the "duration" and saves it
+     * in a List.
+     * 
+     * @param dest
+     * @return durList
+     */
     public List<Flight> searchFlightByDuration(int d) {
         List<Flight> flightList = new ArrayList<>();
-        Flight durFlight = null;
+        Flight durList = null;
 
         try (Statement stmt = flightConn.createStatement()) {
             ResultSet rs = stmt.executeQuery("SELECT * FROM FLIGHTS");
@@ -121,10 +135,10 @@ public class Client {
                 int seats = rs.getInt("SEATS");
 
                 if (duration == d) {
-                    durFlight = new Flight(flightN, name, origin, destination,
+                    durList = new Flight(flightN, name, origin, destination,
                             duration, seats, amount);
 
-                    flightList.add(durFlight);
+                    flightList.add(durList);
                 }
             }
 
@@ -135,9 +149,16 @@ public class Client {
         return flightList;
     }
 
+    /**
+     * this method retrieves all data that matches the "origin" and saves it
+     * in a List.
+     * 
+     * @param dest
+     * @return oriList
+     */
     public List<Flight> searchFlighByOrigin(String ori) {
         List<Flight> flightList = new ArrayList<>();
-        Flight oriFlight = null;
+        Flight oriList = null;
 
         try (Statement stmt = flightConn.createStatement()) {
             ResultSet rs = stmt.executeQuery("SELECT * FROM FLIGHTS");
@@ -152,10 +173,10 @@ public class Client {
                 int seats = rs.getInt("SEATS");
 
                 if (origin.equals(ori)) {
-                    oriFlight = new Flight(flightN, name, origin, destination,
+                    oriList = new Flight(flightN, name, origin, destination,
                             duration, seats, amount);
 
-                    flightList.add(oriFlight);
+                    flightList.add(oriList);
                 }
             }
 
@@ -166,6 +187,10 @@ public class Client {
         return flightList;
     }
 
+    /**
+     * Displays only flights with available seats.
+     * @return map
+     */
     public Map<String, String> viewFlightsBoard() {
         Map<String, String> map = new HashMap();
 
@@ -192,26 +217,50 @@ public class Client {
         return map;
     }
 
+    /**
+     * getter method for  fullName
+     * @return fullName
+     */
     public String getFullName() {
         return fullName;
     }
 
+    /**
+     * setter method for fullName
+     * @param fullName 
+     */
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
+    /**
+     * getter method for passNumber
+     * @return passNumber
+     */
     public int getPassNumber() {
         return passNumber;
     }
 
+    /**
+     * setter method for passNumber
+     * @param passNumber 
+     */
     public void setPassNumber(int passNumber) {
         this.passNumber = passNumber;
     }
 
+    /**
+     * getter method for contact
+     * @return 
+     */
     public int getContact() {
         return contact;
     }
 
+    /**
+     * setter method for contact
+     * @param contact 
+     */
     public void setContact(int contact) {
         this.contact = contact;
     }

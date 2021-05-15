@@ -57,7 +57,7 @@ public class Flight {
      * is returned by the method if the flight is successfully inserted.
      *
      * @param flight
-     * @return
+     * @return true or false
      */
     public boolean addFlight(Flight flight) {
         flight.available = flight.seats;
@@ -83,7 +83,7 @@ public class Flight {
      * successfully removed.
      *
      * @param flightN
-     * @return
+     * @return true or false
      */
     public boolean removerFlight(String flightN) {
         try (Statement stmt = flightConn.createStatement()) {
@@ -106,7 +106,7 @@ public class Flight {
      * @param flightN
      * @param field
      * @param newValue
-     * @return
+     * @return true or false
      */
     public boolean updateFlightData(String flightN, String field, String newValue) {
         try (Statement stmt = flightConn.createStatement()) {
@@ -131,7 +131,7 @@ public class Flight {
      *
      * @param c
      * @param flight
-     * @return
+     * @return true or false
      */
     public boolean issueTicket(Client c, String flight) {
         int ticketN = 0;
@@ -139,9 +139,9 @@ public class Flight {
             try (Statement stmt = reserveConn.createStatement()) {
                 String sql = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
                         + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
-                        + "VALUES ('" + ticketN++ + "', '" + flight + "', '" 
+                        + "VALUES ('" + ticketN++ + "', '" + flight + "', '"
                         + c.getPassNumber() + "',' " + c.getFullName() + "', '"
-                        + Date.valueOf(LocalDate.MAX) + "',' " + c.getContact() 
+                        + Date.valueOf(LocalDate.MAX) + "',' " + c.getContact()
                         + "', '" + getAmount() + "');";
                 stmt.execute(sql);
                 available--;
@@ -164,7 +164,7 @@ public class Flight {
      *
      * @param ticket
      * @param passN
-     * @return
+     * @return true or false
      */
     public boolean cancelFlight(int ticket, int passN) {
 
@@ -177,7 +177,7 @@ public class Flight {
      * sorted by “flightN”. viewFlightBoard() displays only flights with
      * available seats.
      *
-     * @return
+     * @return map
      */
     public static Map<String, String> viewBoard() {
         Map<String, String> map = new HashMap();
@@ -206,6 +206,12 @@ public class Flight {
         return map;
     }
 
+    /**
+     * Retrieves all data from ReservedFlights table and returns them as a map.
+     * The map is sorted by “flightN”.
+     *
+     * @return map
+     */
     public static Map<String, String> viewBookedFlights() {
         Map<String, String> map = new HashMap();
 
@@ -232,80 +238,146 @@ public class Flight {
         return map;
     }
 
+    /**
+     * getter method for flightN
+     * @return flightN
+     */
     public String getFlightN() {
         return flightN;
     }
 
+    /**
+     * setter method for flightN
+     * @param flightN 
+     */
     public void setFlightN(String flightN) {
         this.flightN = flightN;
     }
 
+    /**
+     * getter method for name
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * setter method for name
+     * @param name 
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * getter method for origin
+     * @return origin
+     */
     public String getOrigin() {
         return origin;
     }
 
+    /**
+     * setter method for origin
+     * @param origin 
+     */
     public void setOrigin(String origin) {
         this.origin = origin;
     }
 
+    /**
+     * getter method for dest
+     * @return dest
+     */
     public String getDest() {
         return dest;
     }
 
+    /**
+     * setter method for dest
+     * @param dest 
+     */
     public void setDest(String dest) {
         this.dest = dest;
     }
 
+    /**
+     * getter method for duration
+     * @return duration
+     */
     public double getDuration() {
         return duration;
     }
 
+    /**
+     * setter method for duration
+     * @param duration 
+     */
     public void setDuration(double duration) {
         this.duration = duration;
     }
 
+    /**
+     * getter method for seats
+     * @return seats
+     */
     public int getSeats() {
         return seats;
     }
 
+    /**
+     * setter method for seats
+     * @param seats 
+     */
     public void setSeats(int seats) {
         this.seats = seats;
     }
 
+    /**
+     * getter method for available
+     * @return available
+     */
     public int getAvailable() {
         return available;
     }
 
+    /**
+     * setter method for available
+     * @param available 
+     */
     public void setAvailable(int available) {
         this.available = available;
     }
 
+    /**
+     * getter method for amount
+     * @return amount
+     */
     public double getAmount() {
         return amount;
     }
 
+    /**
+     * setter method for amount
+     * @param amount 
+     */
     public void setAmount(double amount) {
         this.amount = amount;
     }
 
+    /**
+     * toString method
+     * @return a string
+     */
     @Override
     public String toString() {
-        return flightN + ", " + 
-                name + ", " + 
-                origin + ", " + 
-                dest + ", " + 
-                duration + ", " + 
-                seats + ", " +  
-                amount;
+        return flightN + ", "
+                + name + ", "
+                + origin + ", "
+                + dest + ", "
+                + duration + ", "
+                + seats + ", "
+                + amount;
     }
-    
-    
 }
