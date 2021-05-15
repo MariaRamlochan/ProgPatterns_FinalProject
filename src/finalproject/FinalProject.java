@@ -1,6 +1,8 @@
 package finalproject;
 
 import java.util.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -21,6 +23,26 @@ public class FinalProject {
         ClientView clientView = new ClientView();
         ClientController clientController = new ClientController(clientModel, clientView);
         Client client = new Client();
+
+        Locale locale = new Locale("", "");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Choose between these 2 Languages:\n"
+                + "press '1' for english\n"
+                + "press '2' for french\n");
+
+        switch (sc.nextInt()) {
+            case 1:
+                locale = new Locale("en", "CA");
+                break;
+            case 2:
+                locale = new Locale("fr", "CA");
+                break;
+            default:
+                System.out.println("Invalid choice\nDefaulted to Canada, English\n");
+        }
+
+        ResourceBundle res = ResourceBundle.getBundle("finalproject/file", locale);
 
         String SQL_CREATE_TABLE_FLIGHTS = "CREATE TABLE FLIGHTS "
                 + "(FLIGHTN TEXT PRIMARY KEY      NOT NULL,"
@@ -51,31 +73,38 @@ public class FinalProject {
                 + " REFERENCES CLIENTS(PASSNUM))";
 
         flightController.createFlightsTable(SQL_CREATE_TABLE_FLIGHTS);
-        System.out.println("TABLE FLIGHTS CREATED");
+        System.out.println("\nTABLE RESERVEDFLIGHTS FLIGHTS");
+        System.out.println("\n" + res.getString("key1"));
         clientController.createClientsTable(SQL_CREATE_TABLE_CLIENTS);
-        System.out.println("TABLE CLIENTS CREATED");
+        System.out.println("\nTABLE RESERVEDFLIGHTS CLIENTS");
+        System.out.println("\n" + res.getString("key2"));
         flightController.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
-        System.out.println("TABLE RESERVEDFLIGHTS CREATED");
+        System.out.println("\nTABLE RESERVEDFLIGHTS CREATED");
+        System.out.println("\n" + res.getString("key3"));
 
         //view board
         System.out.println("\nView Board");
+        System.out.println("\n" + res.getString("key4"));
         flightModel.forEach((fl) -> {
             flight.addFlight(fl);
         });
         flightController.updateView(Flight.viewBoard());
 
         //remove flight information
-        System.out.println("\nRemove Flight Number 1003");
+        System.out.println("\nremove flight number 1003");
+        System.out.println("\n" + res.getString("key5") + " 1003");
         flight.removerFlight("1003");
         flightController.updateView(Flight.viewBoard());
 
         //updating flight information
-        System.out.println("\nUpdating Flight 1004 to go to Hawaii");
+        System.out.println("\nupdating flight to go to Hawaii");
+        System.out.println("\n" + res.getString("key6") + " 1004 " + res.getString("key7") + " Hawaii");
         flight.updateFlightData("1004", "DEST", "Hawaii");
         flightController.updateView(Flight.viewBoard());
 
         //view the client table
-        System.out.println("\nView Client table");
+        System.out.println("\nview the client table");
+        System.out.println("\n" + res.getString("key8"));
         clientModel.forEach((cl) -> {
             client.addClient(cl);
         });
@@ -83,27 +112,31 @@ public class FinalProject {
 
         //issues ticket
         System.out.println("\nTrying to issue a ticket");
+        System.out.println("\n" + res.getString("key9"));
         clientModel.forEach((cl) -> {
             flight.issueTicket(cl, "1001");
         });
         flightController.updateView(Flight.viewBookedFlights());
 
         //searching by destination
-        System.out.println("\nTrying to search by DEST");
+        System.out.println("\nsearching by destination");
+        System.out.println("\n" + res.getString("key10"));
         client.searchFlightByDest("Hawaii").forEach(dest
                 -> {
             System.out.println(dest.toString());
         });
 
         //searching by duration
-        System.out.println("\nTrying to search by DURATION");
+        System.out.println("\nsearching by duration");
+        System.out.println("\n" + res.getString("key11"));
         client.searchFlightByDuration(405).forEach(dur
                 -> {
             System.out.println(dur.toString());
         });
 
         //searching by origin
-        System.out.println("\nTrying to search by ORIGIN");
+        System.out.println("\nsearching by origin");
+        System.out.println("\n" + res.getString("key12"));
         client.searchFlighByOrigin("Toronto").forEach(ori
                 -> {
             System.out.println(ori.toString());
@@ -111,8 +144,9 @@ public class FinalProject {
     }
 
     /**
-     *this method retrieve the data of the flight
-     * @return an ArrayList 
+     * this method retrieve the data of the flight
+     *
+     * @return an ArrayList
      */
     public static List<Flight> retrieveFlightData() {
         Flight[] listOfFlights = {
@@ -125,8 +159,9 @@ public class FinalProject {
     }
 
     /**
-     *this method retrieve the data of the clients
-     * @return an ArrayList 
+     * this method retrieve the data of the clients
+     *
+     * @return an ArrayList
      */
     public static List<Client> retrieveClientData() {
         Client[] listOfClients = {
