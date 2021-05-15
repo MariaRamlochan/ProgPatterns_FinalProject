@@ -57,44 +57,52 @@ public class FinalProject {
         flightController.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
         System.out.println("TABLE RESERVEDFLIGHTS CREATED");
 
+        //view board
         System.out.println("\nView Board");
         flightModel.forEach((fl) -> {
             flight.addFlight(fl);
         });
         flightController.updateView(Flight.viewBoard());
 
+        //remove flight information
         System.out.println("\nRemove Flight Number 1003");
         flight.removerFlight("1003");
         flightController.updateView(Flight.viewBoard());
 
+        //updating flight information
         System.out.println("\nUpdating Flight 1004 to go to Hawaii");
         flight.updateFlightData("1004", "DEST", "Hawaii");
         flightController.updateView(Flight.viewBoard());
 
+        //view the client table
         System.out.println("\nView Client table");
         clientModel.forEach((cl) -> {
             client.addClient(cl);
         });
         clientController.updateView(Client.viewBoard());
 
+        //issues ticket
         System.out.println("\nTrying to issue a ticket");
         clientModel.forEach((cl) -> {
             flight.issueTicket(cl, "1001");
         });
         flightController.updateView(Flight.viewBookedFlights());
 
+        //searching by destination
         System.out.println("\nTrying to search by DEST");
         client.searchFlightByDest("Hawaii").forEach(dest
                 -> {
             System.out.println(dest.toString());
         });
 
+        //searching by duration
         System.out.println("\nTrying to search by DURATION");
         client.searchFlightByDuration(405).forEach(dur
                 -> {
             System.out.println(dur.toString());
         });
 
+        //searching by origin
         System.out.println("\nTrying to search by ORIGIN");
         client.searchFlighByOrigin("Toronto").forEach(ori
                 -> {
