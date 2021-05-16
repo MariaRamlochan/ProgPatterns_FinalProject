@@ -5,15 +5,31 @@
  */
 package finalproject;
 
+import static finalproject.FinalProject.retrieveClientData;
+import static finalproject.FinalProject.retrieveFlightData;
+import java.util.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  *
  * @author Natsu
  */
 public class ClientPage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ClientPage
-     */
+    Client client = new Client();
+    List<Client> clientModel = retrieveClientData();
+    ClientView clientView = new ClientView();
+    ClientController clientController = new ClientController(clientModel, clientView);
+
+    List<Flight> flightModel = retrieveFlightData();
+    FlightView flightView = new FlightView();
+    FlightController flightController = new FlightController(flightModel, flightView);
+    Flight flight = new Flight();
+
+    Locale locale = new Locale("en", "CA");
+    ResourceBundle res;
+
     public ClientPage() {
         initComponents();
     }
@@ -27,21 +43,159 @@ public class ClientPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        displayTextField = new javax.swing.JTextArea();
+        viewFlightBoardButton = new javax.swing.JButton();
+        englishButton = new javax.swing.JButton();
+        frenchButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        destinationTextField = new javax.swing.JTextField();
+        searchBDestinationButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        displayTextField.setColumns(20);
+        displayTextField.setRows(5);
+        displayTextField.setName(""); // NOI18N
+        jScrollPane1.setViewportView(displayTextField);
+        displayTextField.getAccessibleContext().setAccessibleName("displayTextField");
+
+        viewFlightBoardButton.setText("View Flight Board");
+        viewFlightBoardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewFlightBoardButtonActionPerformed(evt);
+            }
+        });
+
+        englishButton.setText("English");
+        englishButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                englishButtonActionPerformed(evt);
+            }
+        });
+
+        frenchButton.setText("French");
+        frenchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frenchButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setText("Search by Destination");
+
+        destinationTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        searchBDestinationButton.setText("Search");
+        searchBDestinationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBDestinationButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 939, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(384, 384, 384)
+                                .addComponent(viewFlightBoardButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(englishButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(frenchButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(destinationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(searchBDestinationButton)))))
+                        .addGap(0, 421, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(englishButton)
+                    .addComponent(frenchButton))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(destinationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBDestinationButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
+                .addComponent(viewFlightBoardButton)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        viewFlightBoardButton.getAccessibleContext().setAccessibleName("jViewFBoardButton");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void viewFlightBoardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFlightBoardButtonActionPerformed
+        displayTextField.setText("");
+
+        String str = "";
+
+        str += res.getString("key4") + "\n";
+        str += flightController.updateView(Flight.viewBoard());
+
+        displayTextField.setText(str);
+        //viewFlightBoardButton.setEnabled(false);
+    }//GEN-LAST:event_viewFlightBoardButtonActionPerformed
+
+    private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
+        displayTextField.setText("");
+        locale = new Locale("en", "CA");
+        res = ResourceBundle.getBundle("finalproject/file", locale);
+//        frenchButton.setVisible(false);
+//        englishButton.setVisible(false);
+    }//GEN-LAST:event_englishButtonActionPerformed
+
+    private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
+        displayTextField.setText("");
+        locale = new Locale("fr", "CA");
+        res = ResourceBundle.getBundle("finalproject/file", locale);
+//        frenchButton.setVisible(false);
+//        englishButton.setVisible(false);
+    }//GEN-LAST:event_frenchButtonActionPerformed
+
+    private void searchBDestinationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBDestinationButtonActionPerformed
+        displayTextField.setText("");
+
+        List<String> list = new ArrayList<>();
+
+        String str = "";
+
+        str += res.getString("key10") + "\n";
+
+        client.searchFlightByDest(destinationTextField.getText()).forEach(dest
+                -> {
+            list.add(dest.toString());
+        });
+
+        str += list;
+
+        displayTextField.setText(str);
+        viewFlightBoardButton.setEnabled(true);
+
+
+    }//GEN-LAST:event_searchBDestinationButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -74,10 +228,71 @@ public class ClientPage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClientPage().setVisible(true);
+
+                List<Flight> flightModel = retrieveFlightData();
+                FlightView flightView = new FlightView();
+                FlightController flightController = new FlightController(flightModel, flightView);
+                Flight flight = new Flight();
+
+                List<Client> clientModel = retrieveClientData();
+                ClientView clientView = new ClientView();
+                ClientController clientController = new ClientController(clientModel, clientView);
+                Client client = new Client();
+
+                String SQL_CREATE_TABLE_FLIGHTS = "CREATE TABLE FLIGHTS "
+                        + "(FLIGHTN TEXT PRIMARY KEY      NOT NULL,"
+                        + " NAME                     TEXT NOT NULL,"
+                        + " ORIGIN                   TEXT NOT NULL,"
+                        + " DEST                     TEXT NOT NULL,"
+                        + " DURATION                  INT NOT NULL,"
+                        + " SEATS                     INT NOT NULL,"
+                        + " AVAILABLE                 INT NOT NULL,"
+                        + " AMOUNT                    INT NOT NULL)";
+
+                String SQL_CREATE_TABLE_CLIENTS = "CREATE TABLE CLIENTS "
+                        + "(PASSNUM INT PRIMARY KEY       NOT NULL,"
+                        + " FULLNAME                 TEXT NOT NULL,"
+                        + " CONTACT                   INT NOT NULL)";
+
+                String SQL_CREATE_TABLE_RESERVEDFLIGHTS = "CREATE TABLE RESERVEDFLIGHTS "
+                        + "(TICKETN INT PRIMARY KEY       ,"
+                        + " FLIGHTN                  TEXT NOT NULL,"
+                        + " PASSNUM                   INT NOT NULL,"
+                        + " FLNAME                   TEXT NOT NULL,"
+                        + " ISSUEDATE                DATE NOT NULL,"
+                        + " CONTACT                   INT NOT NULL,"
+                        + " AMOUNT                    INT NOT NULL,"
+                        + " CONSTRAINT FK_RESERVE_FLIGHN FOREIGN KEY(FLIGHTN)"
+                        + " REFERENCES FLIGHTS(FLIGHTN),"
+                        + " CONSTRAINT FK_RESERVE_PASSNUM FOREIGN KEY(PASSNUM)"
+                        + " REFERENCES CLIENTS(PASSNUM))";
+
+                flightController.createFlightsTable(SQL_CREATE_TABLE_FLIGHTS);
+                //System.out.println("\nTABLE RESERVEDFLIGHTS FLIGHTS");
+                //System.out.println("\n" + res.getString("key1"));
+                clientController.createClientsTable(SQL_CREATE_TABLE_CLIENTS);
+                //System.out.println("\nTABLE RESERVEDFLIGHTS CLIENTS");
+                //System.out.println("\n" + res.getString("key2"));
+                flightController.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
+                //System.out.println("\nTABLE RESERVEDFLIGHTS CREATED");
+                // System.out.println("\n" + res.getString("key3"));
+
+                flightModel.forEach((fl) -> {
+                    flight.addFlight(fl);
+                });
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField destinationTextField;
+    private javax.swing.JTextArea displayTextField;
+    private javax.swing.JButton englishButton;
+    private javax.swing.JButton frenchButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton searchBDestinationButton;
+    private javax.swing.JButton viewFlightBoardButton;
     // End of variables declaration//GEN-END:variables
 }

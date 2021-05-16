@@ -39,9 +39,19 @@ public class FlightLogin extends javax.swing.JFrame {
 
         managerButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         managerButton.setText("Manager");
+        managerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managerButtonActionPerformed(evt);
+            }
+        });
 
         clientButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         clientButton.setText("Client");
+        clientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Enter as a Manager");
@@ -93,9 +103,9 @@ public class FlightLogin extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(managerButton)
-                .addGap(53, 53, 53)
+                .addGap(63, 63, 63)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -106,6 +116,18 @@ public class FlightLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void managerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerButtonActionPerformed
+        this.setVisible(false);
+        ManagerLog ml = new ManagerLog();
+        ml.setVisible(true);
+    }//GEN-LAST:event_managerButtonActionPerformed
+
+    private void clientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientButtonActionPerformed
+        this.setVisible(false);
+        ClientPage cp = new ClientPage();
+        cp.setVisible(true);
+    }//GEN-LAST:event_clientButtonActionPerformed
 
     /**
      * @param args the command line arguments

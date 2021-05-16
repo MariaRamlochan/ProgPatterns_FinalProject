@@ -158,6 +158,8 @@ public class FinalProject {
                 -> {
             System.out.println(ori.toString());
         });
+        
+        //view flight board
     }
 
     /**

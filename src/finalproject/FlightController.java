@@ -39,7 +39,7 @@ public class FlightController {
         }
     }
 
-    public void updateView(Map model) {
-        FlightView.printFlightDetails(model);
+    public String updateView(Map model) {
+        return FlightView.printFlightDetails(model);
     }
 }

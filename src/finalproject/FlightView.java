@@ -7,7 +7,7 @@ import java.util.Map;
  * @author maria
  */
 public class FlightView {
-    public static void printFlightDetails(Map map) {
-        System.out.println(map);
+    public static String printFlightDetails(Map map) {
+        return map.toString();
     }
 }
