@@ -259,10 +259,13 @@ public class Flight {
                 int contact = rs.getInt("CONTACT");
                 int amount = rs.getInt("AMOUNT");
 
-                map.put(rs.getString("TICKETN"), flightN
-                        + ", " + passNum + ", " + flName
-                        + ", " + issueDate + ", " + contact
-                        + ", " + amount + "\n");
+                map.put("\n\nTicket Number: " +rs.getString("TICKETN"), 
+                        "\nFlight Number: " + flightN +
+                        "\nPassport Number: " + passNum +
+                        "\nFull Name: " + flName +
+                        "\nIssue Date: " + issueDate +
+                        "\nContact: " + contact +
+                        "\nAmount: " + amount);
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
