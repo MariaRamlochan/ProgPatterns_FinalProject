@@ -152,10 +152,13 @@ public class Flight {
                     try (Statement stmt2 = reserveConn.createStatement()) {
                         String sql2 = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
                                 + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
-                                + "VALUES ('" + ticketN + "', '" +  flightNF + "', '"
-                                + c.getPassNumber() + "', '" + c.getFullName() + "', '"
-                                + dtf.format(LocalDateTime.now()) + "', '" 
-                                + c.getContact() + "', '" + amountF + "');";
+                                + "VALUES ('" + "\n\nTicket Number@: " + ticketN 
+                                + "', '\nFlight Number@: " +  flightNF 
+                                + "', '\nPassport Number@: " + c.getPassNumber() 
+                                + "', '\nFull Name@: " + c.getFullName() 
+                                + "', '\nIssued Date@: " + dtf.format(LocalDateTime.now()) 
+                                + "', '\nClient Contact@: " + c.getContact() 
+                                + "', '\nPrice@: " + amountF + "');";
                         stmt2.execute(sql2);
                         return true;
                     } catch (Exception e) {
@@ -228,7 +231,7 @@ public class Flight {
                         "\nDuration: " + duration +
                         "\nSeats: " + seats + 
                         "\nAvailable: " + available + 
-                        "\nAmount: " + amount + "\n");
+                        "\nAmount: " + amount);
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -257,10 +260,13 @@ public class Flight {
                 int contact = rs.getInt("CONTACT");
                 int amount = rs.getInt("AMOUNT");
 
-                map.put(rs.getString("TICKETN"), " FLIGHTN: " + flightN
-                        + ", PASSNUM: " + passNum + ", FLNAME: " + flName
-                        + ", ISSUEDATE: " + issueDate + ", CONTACT: " + contact
-                        + ", AMOUNT: " + amount + "\n");
+                map.put("\n\nTicket Number: " + rs.getString("TICKETN"), 
+                        "\nFlight Number: " + flightN +
+                        "\nPassport Number: " + passNum +  
+                        "\nFull Name: " + flName + 
+                        "\nIssued Date: " + issueDate +  
+                        "\nContact: " + contact + 
+                        "\nPrice: " + amount);
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -405,13 +411,13 @@ public class Flight {
     public String toString() {
         String str = "";
         
-        str += "Flight Number: " + flightN;
-        str += "Flight Name: " + name;
-        str += "Flight Origin: " + origin;
-        str += "Flight Destination: " + dest;
-        str += "Flight Duration: " + duration;
-        str += "Flight Seats: " + seats;
-        str += "Flight Cost: " + amount;
+        str += "\n\nFlight Number: " + flightN;
+        str += "\nFlight Name: " + name;
+        str += "\nFlight Origin: " + origin;
+        str += "\nFlight Destination: " + dest;
+        str += "\nFlight Duration: " + duration;
+        str += "\nFlight Seats: " + seats;
+        str += "\nFlight Cost: " + amount;
         return str;
     }
 }

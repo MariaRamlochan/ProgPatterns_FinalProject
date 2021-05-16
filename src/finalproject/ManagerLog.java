@@ -5,17 +5,32 @@
  */
 package finalproject;
 
+import static finalproject.FinalProject.retrieveClientData;
+import static finalproject.FinalProject.retrieveFlightData;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  *
  * @author Natsu
  */
 public class ManagerLog extends javax.swing.JFrame {
+    Client client = new Client();
+    List<Client> clientModel = retrieveClientData();
+    ClientView clientView = new ClientView();
+    ClientController clientController = new ClientController(clientModel, clientView);
 
-    /**
-     * Creates new form ManagerLog
-     */
+    List<Flight> flightModel = retrieveFlightData();
+    FlightView flightView = new FlightView();
+    FlightController flightController = new FlightController(flightModel, flightView);
+    Flight flight = new Flight();
+    
+    ResourceBundle res;
+    
     public ManagerLog() {
         initComponents();
+        englishButton.doClick();
     }
 
     /**
@@ -27,182 +42,191 @@ public class ManagerLog extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        displayTextArea = new javax.swing.JTextArea();
+        displayBoardButton = new javax.swing.JButton();
+        englishButton = new javax.swing.JButton();
+        frenchButton = new javax.swing.JButton();
+        viewReservedButton = new javax.swing.JButton();
+        ticketNumTextField = new javax.swing.JTextField();
+        clientTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        issueTicketButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        addFlightTextField = new javax.swing.JTextField();
-        removeFlightTextField = new javax.swing.JTextField();
-        changeFlightTextField = new javax.swing.JTextField();
-        issueTicketTextField = new javax.swing.JTextField();
-        cancelFlightTextField = new javax.swing.JTextField();
-        addButton = new javax.swing.JButton();
-        removeButton = new javax.swing.JButton();
-        changeButton = new javax.swing.JButton();
-        issueButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        viewBoardButton = new javax.swing.JButton();
-        viewReservedButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText("Add a Flight: ");
+        displayTextArea.setColumns(20);
+        displayTextArea.setRows(5);
+        jScrollPane1.setViewportView(displayTextArea);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setText("Remove a Flight: ");
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setText("Change Data of a Flight: ");
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel4.setText("Issue a Ticket: ");
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel5.setText("Cancel a Flight: ");
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel6.setText("View the Board of Flights");
-        jLabel6.setToolTipText("");
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel7.setText("View Reserved Flights");
-
-        addFlightTextField.setText("jTestField1");
-
-        removeFlightTextField.setText("jTextField2");
-
-        changeFlightTextField.setText("jTextField3");
-
-        issueTicketTextField.setText("jTextField4");
-
-        cancelFlightTextField.setText("jTextField5");
-
-        addButton.setText("Add");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
+        displayBoardButton.setText("View Board");
+        displayBoardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
+                displayBoardButtonActionPerformed(evt);
             }
         });
 
-        removeButton.setText("Remove");
+        englishButton.setText("English");
+        englishButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                englishButtonActionPerformed(evt);
+            }
+        });
 
-        changeButton.setText("Change");
+        frenchButton.setText("French");
+        frenchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frenchButtonActionPerformed(evt);
+            }
+        });
 
-        issueButton.setText("Issue");
+        viewReservedButton.setText("View Reserved");
+        viewReservedButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewReservedButtonActionPerformed(evt);
+            }
+        });
 
-        cancelButton.setText("Cancel");
+        ticketNumTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        viewBoardButton.setText("View");
+        clientTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        viewReservedButton.setText("View");
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setText("Ticket Number: ");
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setText("Client: ");
+
+        issueTicketButton.setText("Issue Ticket");
+        issueTicketButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                issueTicketButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Issue a Ticket");
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addContainerGap()
+                        .addComponent(englishButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(frenchButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(issueTicketTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(issueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(removeFlightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(removeButton))
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(addFlightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(changeFlightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addComponent(changeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cancelFlightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1)))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ticketNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel7))))
+                        .addGap(107, 107, 107)
+                        .addComponent(issueTicketButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 545, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(viewBoardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(viewReservedButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 42, Short.MAX_VALUE))
+                        .addComponent(displayBoardButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewReservedButton))
+                    .addComponent(jScrollPane1))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addFlightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addButton))
-                .addGap(28, 28, 28)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(removeFlightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(removeButton))
-                        .addGap(34, 34, 34)
+                            .addComponent(englishButton)
+                            .addComponent(frenchButton))
+                        .addGap(33, 33, 33)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(changeFlightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(changeButton))
-                .addGap(41, 41, 41)
-                .addComponent(jLabel4)
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(ticketNumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addComponent(issueTicketButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(issueTicketTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(issueButton))
-                .addGap(32, 32, 32)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelFlightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelButton))
-                .addGap(29, 29, 29)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(viewBoardButton)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(viewReservedButton)
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(displayBoardButton)
+                    .addComponent(viewReservedButton))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+    private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
+        displayTextArea.setText("");
+        Locale locale = new Locale("en", "CA");
+        res = ResourceBundle.getBundle("finalproject/file", locale);
+    }//GEN-LAST:event_englishButtonActionPerformed
+
+    private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
+        displayTextArea.setText("");
+        Locale locale = new Locale("fr", "CA");
+        res = ResourceBundle.getBundle("finalproject/file", locale);
+    }//GEN-LAST:event_frenchButtonActionPerformed
+
+    private void displayBoardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBoardButtonActionPerformed
+        displayTextArea.setText("");
+
+        String str = "";
+
+        str += res.getString("key4") + "\n";
+        str += flightController.updateView(Flight.viewBoard());
+
+        displayTextArea.setText(str);
+    }//GEN-LAST:event_displayBoardButtonActionPerformed
+
+    private void viewReservedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReservedButtonActionPerformed
+        displayTextArea.setText("");
+
+        String str = "";
+
+        str += res.getString("key4") + "\n";
+        str += flightController.updateView(Flight.viewBookedFlights());
+
+        displayTextArea.setText(str);
+    }//GEN-LAST:event_viewReservedButtonActionPerformed
+
+    private void issueTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueTicketButtonActionPerformed
+        displayTextArea.setText("");
         
-    }//GEN-LAST:event_addButtonActionPerformed
+        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 
+                Integer.parseInt(clientTextField.getText())) 
+                flight.issueTicket(cl, ticketNumTextField.getText()); });
+        
+        String str = "";
+        
+        str += "\n" + res.getString("key9");
+        str += flightController.updateView(Flight.viewBookedFlights());
+        
+        displayTextArea.setText(str);
+    }//GEN-LAST:event_issueTicketButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,30 +259,77 @@ public class ManagerLog extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ManagerLog().setVisible(true);
+                
+                List<Flight> flightModel = retrieveFlightData();
+                FlightView flightView = new FlightView();
+                FlightController flightController = new FlightController(flightModel, flightView);
+                Flight flight = new Flight();
+
+                List<Client> clientModel = retrieveClientData();
+                ClientView clientView = new ClientView();
+                ClientController clientController = new ClientController(clientModel, clientView);
+                Client client = new Client();
+
+                String SQL_CREATE_TABLE_FLIGHTS = "CREATE TABLE FLIGHTS "
+                        + "(FLIGHTN TEXT PRIMARY KEY      NOT NULL,"
+                        + " NAME                     TEXT NOT NULL,"
+                        + " ORIGIN                   TEXT NOT NULL,"
+                        + " DEST                     TEXT NOT NULL,"
+                        + " DURATION                  INT NOT NULL,"
+                        + " SEATS                     INT NOT NULL,"
+                        + " AVAILABLE                 INT NOT NULL,"
+                        + " AMOUNT                    INT NOT NULL)";
+
+                String SQL_CREATE_TABLE_CLIENTS = "CREATE TABLE CLIENTS "
+                        + "(PASSNUM INT PRIMARY KEY       NOT NULL,"
+                        + " FULLNAME                 TEXT NOT NULL,"
+                        + " CONTACT                   INT NOT NULL)";
+
+                String SQL_CREATE_TABLE_RESERVEDFLIGHTS = "CREATE TABLE RESERVEDFLIGHTS "
+                        + "(TICKETN INT PRIMARY KEY       ,"
+                        + " FLIGHTN                  TEXT NOT NULL,"
+                        + " PASSNUM                   INT NOT NULL,"
+                        + " FLNAME                   TEXT NOT NULL,"
+                        + " ISSUEDATE                DATE NOT NULL,"
+                        + " CONTACT                   INT NOT NULL,"
+                        + " AMOUNT                    INT NOT NULL,"
+                        + " CONSTRAINT FK_RESERVE_FLIGHN FOREIGN KEY(FLIGHTN)"
+                        + " REFERENCES FLIGHTS(FLIGHTN),"
+                        + " CONSTRAINT FK_RESERVE_PASSNUM FOREIGN KEY(PASSNUM)"
+                        + " REFERENCES CLIENTS(PASSNUM))";
+                
+                flightController.createFlightsTable(SQL_CREATE_TABLE_FLIGHTS);
+                //System.out.println("\nTABLE RESERVEDFLIGHTS FLIGHTS");
+                //System.out.println("\n" + res.getString("key1"));
+                clientController.createClientsTable(SQL_CREATE_TABLE_CLIENTS);
+                //System.out.println("\nTABLE RESERVEDFLIGHTS CLIENTS");
+                //System.out.println("\n" + res.getString("key2"));
+                flightController.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
+                //System.out.println("\nTABLE RESERVEDFLIGHTS CREATED");
+                // System.out.println("\n" + res.getString("key3"));
+                
+                flightModel.forEach((fl) -> {
+                    flight.addFlight(fl);
+                });
+                
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButton;
-    private javax.swing.JTextField addFlightTextField;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JTextField cancelFlightTextField;
-    private javax.swing.JButton changeButton;
-    private javax.swing.JTextField changeFlightTextField;
-    private javax.swing.JButton issueButton;
-    private javax.swing.JTextField issueTicketTextField;
+    private javax.swing.JTextField clientTextField;
+    private javax.swing.JButton displayBoardButton;
+    private javax.swing.JTextArea displayTextArea;
+    private javax.swing.JButton englishButton;
+    private javax.swing.JButton frenchButton;
+    private javax.swing.JButton issueTicketButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JButton removeButton;
-    private javax.swing.JTextField removeFlightTextField;
-    private javax.swing.JButton viewBoardButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField ticketNumTextField;
     private javax.swing.JButton viewReservedButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -31,6 +31,7 @@ public class ClientPage extends javax.swing.JFrame {
 
     public ClientPage() {
         initComponents();
+        englishButton.doClick();
     }
 
     /**
@@ -154,18 +155,19 @@ public class ClientPage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(searchBOriginButton2)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewFlightBoardButton)
-                .addGap(106, 106, 106))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(viewFlightBoardButton)
+                        .addGap(106, 106, 106))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(englishButton)
@@ -187,9 +189,9 @@ public class ClientPage extends javax.swing.JFrame {
                             .addComponent(jLabel3)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48)
-                .addComponent(viewFlightBoardButton)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(viewFlightBoardButton)))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -207,23 +209,18 @@ public class ClientPage extends javax.swing.JFrame {
         str += flightController.updateView(Flight.viewBoard());
 
         displayTextField.setText(str);
-        //viewFlightBoardButton.setEnabled(false);
     }//GEN-LAST:event_viewFlightBoardButtonActionPerformed
 
     private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
         displayTextField.setText("");
         Locale locale = new Locale("en", "CA");
         res = ResourceBundle.getBundle("finalproject/file", locale);
-//        frenchButton.setVisible(false);
-//        englishButton.setVisible(false);
     }//GEN-LAST:event_englishButtonActionPerformed
 
     private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
         displayTextField.setText("");
         Locale locale = new Locale("fr", "CA");
         res = ResourceBundle.getBundle("finalproject/file", locale);
-//        frenchButton.setVisible(false);
-//        englishButton.setVisible(false);
     }//GEN-LAST:event_frenchButtonActionPerformed
 
     private void searchBDestinationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBDestinationButtonActionPerformed
