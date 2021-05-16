@@ -73,43 +73,41 @@ public class FinalProject {
                 + " REFERENCES CLIENTS(PASSNUM))";
 
         flightController.createFlightsTable(SQL_CREATE_TABLE_FLIGHTS);
-        System.out.println("\nTABLE RESERVEDFLIGHTS FLIGHTS");
+       // System.out.println("\nTABLE RESERVEDFLIGHTS FLIGHTS");
         System.out.println("\n" + res.getString("key1"));
         clientController.createClientsTable(SQL_CREATE_TABLE_CLIENTS);
-        System.out.println("\nTABLE RESERVEDFLIGHTS CLIENTS");
+        //System.out.println("\nTABLE RESERVEDFLIGHTS CLIENTS");
         System.out.println("\n" + res.getString("key2"));
         flightController.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
-        System.out.println("\nTABLE RESERVEDFLIGHTS CREATED");
+        //System.out.println("\nTABLE RESERVEDFLIGHTS CREATED");
         System.out.println("\n" + res.getString("key3"));
 
         //view board
-        System.out.println("\nView Board");
+        //System.out.println("\nView Board");
         System.out.println("\n" + res.getString("key4"));
-        flightModel.forEach((fl) -> {
-            flight.addFlight(fl);
-        });
+        flightModel.forEach((fl) -> { flight.addFlight(fl); });
         flightController.updateView(Flight.viewBoard());
 
         //remove flight information
-        System.out.println("\nremove flight number 1003");
+        //System.out.println("\nremove flight number 1003");
         System.out.println("\n" + res.getString("key5") + " 1003");
         flight.removerFlight("1003");
         flightController.updateView(Flight.viewBoard());
 
         //updating flight information
-        System.out.println("\nupdating flight to go to Hawaii");
+        //System.out.println("\nupdating flight to go to Hawaii");
         System.out.println("\n" + res.getString("key6") + " 1004 " + res.getString("key7") + " Hawaii");
         flight.updateFlightData("1004", "DEST", "Hawaii");
         flightController.updateView(Flight.viewBoard());
 
         //view the client table
-        System.out.println("\nview the client table");
+        //System.out.println("\nview the client table");
         System.out.println("\n" + res.getString("key8"));
         clientModel.forEach((cl) -> { client.addClient(cl); });
         clientController.updateView(Client.viewBoard());
 
         //issues ticket
-        System.out.println("\nTrying to issue a ticket");
+        //System.out.println("\nTrying to issue a ticket");
         System.out.println("\n" + res.getString("key9"));
         clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5001) flight.issueTicket(cl, "1004"); });
         flightController.updateView(Flight.viewBookedFlights());

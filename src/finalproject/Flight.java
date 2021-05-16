@@ -90,6 +90,7 @@ public class Flight {
         try (Statement stmt = flightConn.createStatement()) {
             String sql = "DELETE FROM FLIGHTS WHERE FLIGHTN=" + flightN + ";";
             stmt.execute(sql);
+            available++;
             return true;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -152,13 +153,10 @@ public class Flight {
                     try (Statement stmt2 = reserveConn.createStatement()) {
                         String sql2 = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
                                 + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
-                                + "VALUES ('" + "\n\nTicket Number@: " + ticketN 
-                                + "', '\nFlight Number@: " +  flightNF 
-                                + "', '\nPassport Number@: " + c.getPassNumber() 
-                                + "', '\nFull Name@: " + c.getFullName() 
-                                + "', '" + dtf.format(LocalDateTime.now()) 
-                                + "', '" + c.getContact() 
-                                + "', '" + amountF + "');";
+                                + "VALUES ('" + ticketN + "', '" +  flightNF + "', '"
+                                + c.getPassNumber() + "', '" + c.getFullName() + "', '"
+                                + dtf.format(LocalDateTime.now()) + "', '" 
+                                + c.getContact() + "', '" + amountF + "');";
                         stmt2.execute(sql2);
                         return true;
                     } catch (Exception e) {
@@ -193,6 +191,7 @@ public class Flight {
             String sql = "DELETE FROM RESERVEDFLIGHTS WHERE TICKETN=" + ticket +
                     " AND PASSNUM=" + passN + ";";
             stmt.execute(sql);
+            available++;
             return true;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
