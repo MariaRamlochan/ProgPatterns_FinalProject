@@ -1,8 +1,6 @@
 package finalproject;
 
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -22,6 +20,7 @@ public class Flight {
     private int seats;
     private int available;
     private double amount;
+    private int ticketN;
     private static Connection flightConn = FlightDBConnection.getInstance();
     private static Connection reserveConn = ReserveDBConnection.getInstance();
 
@@ -136,7 +135,7 @@ public class Flight {
      * @return true or false
      */
     public boolean issueTicket(Client c, String flight) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter dtf = DateTimeFormatter.BASIC_ISO_DATE;
         
         try (Statement stmt = flightConn.createStatement()) {
             
@@ -149,13 +148,14 @@ public class Flight {
                 int amountF = rs.getInt("AMOUNT");
                 
                 if (availableF > 0) {
+                    ticketN++;
                     try (Statement stmt2 = reserveConn.createStatement()) {
-                        String sql2 = "INSERT INTO RESERVEDFLIGHTS (FLIGHTN, "
+                        String sql2 = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
                                 + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
-                                + "VALUES ('" +  flightNF + "', '"
+                                + "VALUES ('" + ticketN + "', '" +  flightNF + "', '"
                                 + c.getPassNumber() + "',' " + c.getFullName() + "', '"
-                                + dtf.format(LocalDateTime.now()) + "',' " + c.getContact()
-                                + "', '" + amountF + "');";
+                                + dtf.format(LocalDateTime.now()) + "',' " 
+                                + c.getContact() + "', '" + amountF + "');";
                         stmt2.execute(sql2);
                         availableF--;
                         return true;

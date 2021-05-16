@@ -64,7 +64,7 @@ public class FinalProject {
                 + " FLIGHTN                  TEXT NOT NULL,"
                 + " PASSNUM                   INT NOT NULL,"
                 + " FLNAME                   TEXT NOT NULL,"
-                + " ISSUEDATE                TEXT NOT NULL,"
+                + " ISSUEDATE                DATE NOT NULL,"
                 + " CONTACT                   INT NOT NULL,"
                 + " AMOUNT                    INT NOT NULL,"
                 + " CONSTRAINT FK_RESERVE_FLIGHN FOREIGN KEY(FLIGHTN)"
@@ -112,6 +112,10 @@ public class FinalProject {
         System.out.println("\nTrying to issue a ticket");
         System.out.println("\n" + res.getString("key9"));
         clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5003) flight.issueTicket(cl, "1004"); });
+        flightController.updateView(Flight.viewBookedFlights());
+        
+        System.out.println("\n" + res.getString("key9"));
+        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5004) flight.issueTicket(cl, "1002"); });
         flightController.updateView(Flight.viewBookedFlights());
 
         //searching by destination
