@@ -221,10 +221,14 @@ public class Flight {
                 int available = rs.getInt("AVAILABLE");
                 int amount = rs.getInt("AMOUNT");
 
-                map.put(rs.getString("FLIGHTN"), " NAME: " + name + ", ORIGIN: "
-                        + origin + ", DEST: " + dest + ", DURATION: " + duration
-                        + ", SEATS: " + seats + ", AVAILABLE: " + available
-                        + ", AMOUNT: " + amount + "\n");
+                map.put("\n\nFlight Number: " + rs.getString("FLIGHTN"), 
+                        "\nName: " + name + 
+                        "\nOrigin: " + origin + 
+                        "\nDestination: " + dest + 
+                        "\nDuration: " + duration +
+                        "\nSeats: " + seats + 
+                        "\nAvailable: " + available + 
+                        "\nAmount: " + amount + "\n");
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -399,12 +403,15 @@ public class Flight {
      */
     @Override
     public String toString() {
-        return flightN + ", "
-                + name + ", "
-                + origin + ", "
-                + dest + ", "
-                + duration + ", "
-                + seats + ", "
-                + amount;
+        String str = "";
+        
+        str += "Flight Number: " + flightN;
+        str += "Flight Name: " + name;
+        str += "Flight Origin: " + origin;
+        str += "Flight Destination: " + dest;
+        str += "Flight Duration: " + duration;
+        str += "Flight Seats: " + seats;
+        str += "Flight Cost: " + amount;
+        return str;
     }
 }

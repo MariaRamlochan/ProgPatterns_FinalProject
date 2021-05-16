@@ -26,8 +26,7 @@ public class ClientPage extends javax.swing.JFrame {
     FlightView flightView = new FlightView();
     FlightController flightController = new FlightController(flightModel, flightView);
     Flight flight = new Flight();
-
-    Locale locale = new Locale("en", "CA");
+    
     ResourceBundle res;
 
     public ClientPage() {
@@ -51,6 +50,12 @@ public class ClientPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         destinationTextField = new javax.swing.JTextField();
         searchBDestinationButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        DurationTextField = new javax.swing.JTextField();
+        searchBDurationButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        originTextField = new javax.swing.JTextField();
+        searchBOriginButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +73,7 @@ public class ClientPage extends javax.swing.JFrame {
         });
 
         englishButton.setText("English");
+        englishButton.setSelected(true);
         englishButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 englishButtonActionPerformed(evt);
@@ -93,53 +99,98 @@ public class ClientPage extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setText("Search by Duration");
+
+        DurationTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        searchBDurationButton1.setText("Search");
+        searchBDurationButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBDurationButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setText("Search by Origin");
+
+        originTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        searchBOriginButton2.setText("Search");
+        searchBOriginButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBOriginButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(englishButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(frenchButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(384, 384, 384)
-                                .addComponent(viewFlightBoardButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(englishButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(frenchButton))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(destinationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(searchBDestinationButton)))))
-                        .addGap(0, 421, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(DurationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchBDurationButton1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(destinationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchBDestinationButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(originTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchBOriginButton2)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewFlightBoardButton)
+                .addGap(106, 106, 106))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(englishButton)
-                    .addComponent(frenchButton))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(destinationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBDestinationButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(englishButton)
+                            .addComponent(frenchButton))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(destinationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchBDestinationButton)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DurationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchBDurationButton1)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(originTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchBOriginButton2)
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(48, 48, 48)
                 .addComponent(viewFlightBoardButton)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         viewFlightBoardButton.getAccessibleContext().setAccessibleName("jViewFBoardButton");
@@ -161,7 +212,7 @@ public class ClientPage extends javax.swing.JFrame {
 
     private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
         displayTextField.setText("");
-        locale = new Locale("en", "CA");
+        Locale locale = new Locale("en", "CA");
         res = ResourceBundle.getBundle("finalproject/file", locale);
 //        frenchButton.setVisible(false);
 //        englishButton.setVisible(false);
@@ -169,7 +220,7 @@ public class ClientPage extends javax.swing.JFrame {
 
     private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
         displayTextField.setText("");
-        locale = new Locale("fr", "CA");
+        Locale locale = new Locale("fr", "CA");
         res = ResourceBundle.getBundle("finalproject/file", locale);
 //        frenchButton.setVisible(false);
 //        englishButton.setVisible(false);
@@ -193,9 +244,57 @@ public class ClientPage extends javax.swing.JFrame {
 
         displayTextField.setText(str);
         viewFlightBoardButton.setEnabled(true);
-
+        destinationTextField.setText("");
+        DurationTextField.setText("");
+        originTextField.setText("");
 
     }//GEN-LAST:event_searchBDestinationButtonActionPerformed
+
+    private void searchBDurationButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBDurationButton1ActionPerformed
+       displayTextField.setText("");
+
+        List<String> list = new ArrayList<>();
+
+        String str = "";
+
+        str += res.getString("key11") + "\n";
+
+        client.searchFlightByDuration(Integer.parseInt(DurationTextField.getText())).forEach(dur
+                -> {
+            list.add(dur.toString());
+        });
+
+        str += list;
+
+        displayTextField.setText(str);
+        viewFlightBoardButton.setEnabled(true);
+        destinationTextField.setText("");
+        DurationTextField.setText("");
+        originTextField.setText("");
+    }//GEN-LAST:event_searchBDurationButton1ActionPerformed
+
+    private void searchBOriginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBOriginButton2ActionPerformed
+         displayTextField.setText("");
+
+        List<String> list = new ArrayList<>();
+
+        String str = "";
+
+        str += res.getString("key12") + "\n";
+
+        client.searchFlighByOrigin(originTextField.getText()).forEach(ori
+                -> {
+            list.add(ori.toString());
+        });
+
+        str += list;
+
+        displayTextField.setText(str);
+        viewFlightBoardButton.setEnabled(true);
+        destinationTextField.setText("");
+        DurationTextField.setText("");
+        originTextField.setText("");
+    }//GEN-LAST:event_searchBOriginButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,13 +385,19 @@ public class ClientPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField DurationTextField;
     private javax.swing.JTextField destinationTextField;
     private javax.swing.JTextArea displayTextField;
     private javax.swing.JButton englishButton;
     private javax.swing.JButton frenchButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField originTextField;
     private javax.swing.JButton searchBDestinationButton;
+    private javax.swing.JButton searchBDurationButton1;
+    private javax.swing.JButton searchBOriginButton2;
     private javax.swing.JButton viewFlightBoardButton;
     // End of variables declaration//GEN-END:variables
 }
