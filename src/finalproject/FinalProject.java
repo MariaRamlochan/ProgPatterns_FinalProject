@@ -120,11 +120,10 @@ public class FinalProject {
         
         //Book a flight
         System.out.println("\nBooking a flight");
-        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5003) client.bookASeat("1004"); });
-        flightController.updateView(Flight.viewBookedFlights());
-        
-        //System.out.println("\n" + res.getString("key9"));
-        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5004) client.bookASeat("1002"); });
+        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5003) 
+        { if(client.bookASeat("1004") == true) { flight.issueTicket(cl, "1004");   
+        }}
+        });
         flightController.updateView(Flight.viewBookedFlights());
         
         //Cancel flight (Flight class)
