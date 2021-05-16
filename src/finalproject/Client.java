@@ -1,8 +1,6 @@
 package finalproject;
 
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -68,41 +66,25 @@ public class Client {
      * @return
      */
     public boolean bookASeat(String flightNum) {
-       DateTimeFormatter dtf = DateTimeFormatter.BASIC_ISO_DATE;
-        
-        try (Statement stmt = flightConn.createStatement()) {
+    
+          try (Statement stmt = flightConn.createStatement()) {
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM FLIGHTS "
                     + "WHERE FLIGHTN= " + flightNum + ";");
 
             while (rs.next()) {
-                String flightNF = rs.getString("FLIGHTN");
                 int availableF = rs.getInt("AVAILABLE");
-                int amountF = rs.getInt("AMOUNT");
                 
                 if (availableF > 0) {
-                    flight.ticketN++;
-                    try (Statement stmt2 = reserveConn.createStatement()) {
-                        String sql2 = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
-                                + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
-                                + "VALUES ('" + flight.ticketN + "', '" +  flightNF + "', '"
-                                + this.passNumber + "',' " + fullName + "', '"
-                                + dtf.format(LocalDateTime.now()) + "',' " 
-                                + contact + "', '" + amountF + "');";
-                        stmt2.execute(sql2);
-                        availableF--;
-                        return true;
-                    } catch (Exception e) {
-                        System.err.println(e.getClass().getName() + ": " + e.getMessage());
-                        System.exit(0);
-                    }
-                }
+                    availableF--;
+                } 
             }
+            return true;  
         }
         catch (Exception e) {
                 System.err.println(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(0);
-         }
+        }
 
         return false;
     }

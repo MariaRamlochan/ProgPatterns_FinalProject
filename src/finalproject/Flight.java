@@ -144,8 +144,8 @@ public class Flight {
 
             while (rs.next()) {
                 String flightNF = rs.getString("FLIGHTN");
-                int availableF = rs.getInt("AVAILABLE");
                 int amountF = rs.getInt("AMOUNT");
+                int availableF = rs.getInt("AVAILABLE");
                 
                 if (availableF > 0) {
                     ticketN++;
@@ -153,11 +153,10 @@ public class Flight {
                         String sql2 = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
                                 + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
                                 + "VALUES ('" + ticketN + "', '" +  flightNF + "', '"
-                                + c.getPassNumber() + "',' " + c.getFullName() + "', '"
-                                + dtf.format(LocalDateTime.now()) + "',' " 
+                                + c.getPassNumber() + "', '" + c.getFullName() + "', '"
+                                + dtf.format(LocalDateTime.now()) + "', '" 
                                 + c.getContact() + "', '" + amountF + "');";
                         stmt2.execute(sql2);
-                        availableF--;
                         return true;
                     } catch (Exception e) {
                         System.err.println(e.getClass().getName() + ": " + e.getMessage());
