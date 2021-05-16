@@ -117,6 +117,12 @@ public class FinalProject {
         System.out.println("\n" + res.getString("key9"));
         clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5004) flight.issueTicket(cl, "1002"); });
         flightController.updateView(Flight.viewBookedFlights());
+        
+        //Cancel flight
+        System.out.println("\nCancel flight");
+        //System.out.println("\n" + res.getString("key5") + " 1003");
+        flight.cancelFlight(1, 5003);
+        flightController.updateView(Flight.viewBookedFlights());
 
         //searching by destination
         System.out.println("\nsearching by destination");

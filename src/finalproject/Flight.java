@@ -187,7 +187,15 @@ public class Flight {
      * @return true or false
      */
     public boolean cancelFlight(int ticket, int passN) {
-
+        try (Statement stmt = reserveConn.createStatement()) {
+            String sql = "DELETE FROM RESERVEDFLIGHTS WHERE TICKETN=" + ticket +
+                    " AND PASSNUM=" + passN + ";";
+            stmt.execute(sql);
+            return true;
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
         return false;
     }
 
