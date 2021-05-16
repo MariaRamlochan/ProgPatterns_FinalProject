@@ -111,21 +111,34 @@ public class FinalProject {
         //issues ticket
         System.out.println("\nTrying to issue a ticket");
         System.out.println("\n" + res.getString("key9"));
-        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5003) flight.issueTicket(cl, "1004"); });
+        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5001) flight.issueTicket(cl, "1004"); });
         flightController.updateView(Flight.viewBookedFlights());
         
-        System.out.println("\n" + res.getString("key9"));
-        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5004) flight.issueTicket(cl, "1002"); });
+        //System.out.println("\n" + res.getString("key9"));
+        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5002) flight.issueTicket(cl, "1002"); });
         flightController.updateView(Flight.viewBookedFlights());
         
-        //Cancel flight
+        //Book a flight
+        System.out.println("\nBooking a flight");
+        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5003) client.bookASeat("1004"); });
+        flightController.updateView(Flight.viewBookedFlights());
+        
+        //System.out.println("\n" + res.getString("key9"));
+        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5004) client.bookASeat("1002"); });
+        flightController.updateView(Flight.viewBookedFlights());
+        
+        //Cancel flight (Flight class)
         System.out.println("\nCancel flight");
         //System.out.println("\n" + res.getString("key5") + " 1003");
         flight.cancelFlight(1, 5003);
         flightController.updateView(Flight.viewBookedFlights());
-
+        
+        //Cancel Reservation (Client class)
+        System.out.println("\nCancel Reservation");
+        client.cancelResservation(2);
+        clientController.updateView(Flight.viewBookedFlights());
+        
         //searching by destination
-        System.out.println("\nsearching by destination");
         System.out.println("\n" + res.getString("key10"));
         client.searchFlightByDest("Hawaii").forEach(dest
                 -> {
@@ -133,7 +146,6 @@ public class FinalProject {
         });
 
         //searching by duration
-        System.out.println("\nsearching by duration");
         System.out.println("\n" + res.getString("key11"));
         client.searchFlightByDuration(405).forEach(dur
                 -> {
@@ -141,7 +153,6 @@ public class FinalProject {
         });
 
         //searching by origin
-        System.out.println("\nsearching by origin");
         System.out.println("\n" + res.getString("key12"));
         client.searchFlighByOrigin("Toronto").forEach(ori
                 -> {

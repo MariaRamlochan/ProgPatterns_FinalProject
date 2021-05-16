@@ -20,7 +20,7 @@ public class Flight {
     private int seats;
     private int available;
     private double amount;
-    private int ticketN;
+    public static int ticketN;
     private static Connection flightConn = FlightDBConnection.getInstance();
     private static Connection reserveConn = ReserveDBConnection.getInstance();
 
