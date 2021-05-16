@@ -156,9 +156,9 @@ public class Flight {
                                 + "', '\nFlight Number@: " +  flightNF 
                                 + "', '\nPassport Number@: " + c.getPassNumber() 
                                 + "', '\nFull Name@: " + c.getFullName() 
-                                + "', '\nIssued Date@: " + dtf.format(LocalDateTime.now()) 
-                                + "', '\nClient Contact@: " + c.getContact() 
-                                + "', '\nPrice@: " + amountF + "');";
+                                + "', '" + dtf.format(LocalDateTime.now()) 
+                                + "', '" + c.getContact() 
+                                + "', '" + amountF + "');";
                         stmt2.execute(sql2);
                         return true;
                     } catch (Exception e) {
@@ -260,13 +260,10 @@ public class Flight {
                 int contact = rs.getInt("CONTACT");
                 int amount = rs.getInt("AMOUNT");
 
-                map.put("\n\nTicket Number: " + rs.getString("TICKETN"), 
-                        "\nFlight Number: " + flightN +
-                        "\nPassport Number: " + passNum +  
-                        "\nFull Name: " + flName + 
-                        "\nIssued Date: " + issueDate +  
-                        "\nContact: " + contact + 
-                        "\nPrice: " + amount);
+                map.put(rs.getString("TICKETN"), flightN
+                        + ", " + passNum + ", " + flName
+                        + ", " + issueDate + ", " + contact
+                        + ", " + amount + "\n");
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
