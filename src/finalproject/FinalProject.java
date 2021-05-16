@@ -60,11 +60,11 @@ public class FinalProject {
                 + " CONTACT                   INT NOT NULL)";
 
         String SQL_CREATE_TABLE_RESERVEDFLIGHTS = "CREATE TABLE RESERVEDFLIGHTS "
-                + "(TICKETN INT PRIMARY KEY       NOT NULL,"
+                + "(TICKETN INT PRIMARY KEY       ,"
                 + " FLIGHTN                  TEXT NOT NULL,"
                 + " PASSNUM                   INT NOT NULL,"
                 + " FLNAME                   TEXT NOT NULL,"
-                + " ISSUEDATE                DATE NOT NULL,"
+                + " ISSUEDATE                TEXT NOT NULL,"
                 + " CONTACT                   INT NOT NULL,"
                 + " AMOUNT                    INT NOT NULL,"
                 + " CONSTRAINT FK_RESERVE_FLIGHN FOREIGN KEY(FLIGHTN)"
@@ -105,17 +105,13 @@ public class FinalProject {
         //view the client table
         System.out.println("\nview the client table");
         System.out.println("\n" + res.getString("key8"));
-        clientModel.forEach((cl) -> {
-            client.addClient(cl);
-        });
+        clientModel.forEach((cl) -> { client.addClient(cl); });
         clientController.updateView(Client.viewBoard());
 
         //issues ticket
         System.out.println("\nTrying to issue a ticket");
         System.out.println("\n" + res.getString("key9"));
-        clientModel.forEach((cl) -> {
-            flight.issueTicket(cl, "1001");
-        });
+        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5003) flight.issueTicket(cl, "1004"); });
         flightController.updateView(Flight.viewBookedFlights());
 
         //searching by destination

@@ -1,8 +1,10 @@
 package finalproject;
 
 import java.sql.*;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -134,23 +136,41 @@ public class Flight {
      * @return true or false
      */
     public boolean issueTicket(Client c, String flight) {
-        int ticketN = 0;
-        if (getAvailable() > 0) {
-            try (Statement stmt = reserveConn.createStatement()) {
-                String sql = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
-                        + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
-                        + "VALUES ('" + ticketN++ + "', '" + flight + "', '"
-                        + c.getPassNumber() + "',' " + c.getFullName() + "', '"
-                        + Date.valueOf(LocalDate.MAX) + "',' " + c.getContact()
-                        + "', '" + getAmount() + "');";
-                stmt.execute(sql);
-                available--;
-                return true;
-            } catch (Exception e) {
-                System.err.println(e.getClass().getName() + ": " + e.getMessage());
-                System.exit(0);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        
+        try (Statement stmt = flightConn.createStatement()) {
+            
+            ResultSet rs = stmt.executeQuery("SELECT * FROM FLIGHTS "
+                    + "WHERE FLIGHTN= " + flight + ";");
+
+            while (rs.next()) {
+                String flightNF = rs.getString("FLIGHTN");
+                int availableF = rs.getInt("AVAILABLE");
+                int amountF = rs.getInt("AMOUNT");
+                
+                if (availableF > 0) {
+                    try (Statement stmt2 = reserveConn.createStatement()) {
+                        String sql2 = "INSERT INTO RESERVEDFLIGHTS (FLIGHTN, "
+                                + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
+                                + "VALUES ('" +  flightNF + "', '"
+                                + c.getPassNumber() + "',' " + c.getFullName() + "', '"
+                                + dtf.format(LocalDateTime.now()) + "',' " + c.getContact()
+                                + "', '" + amountF + "');";
+                        stmt2.execute(sql2);
+                        availableF--;
+                        return true;
+                    } catch (Exception e) {
+                        System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                        System.exit(0);
+                    }
+                }
             }
         }
+        catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
+         }
+
         return false;
     }
 
