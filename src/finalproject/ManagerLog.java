@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package finalproject;
 
 import static finalproject.FinalProject.retrieveClientData;
@@ -13,7 +8,7 @@ import java.util.ResourceBundle;
 
 /**
  *
- * @author Natsu
+ * @author maria and nafees
  */
 public class ManagerLog extends javax.swing.JFrame {
 
@@ -689,7 +684,6 @@ public class ManagerLog extends javax.swing.JFrame {
         str += flightController.updateView(Flight.viewBoard());
         
         displayTextArea.setText(str);
-
     }//GEN-LAST:event_addButtonActionPerformed
 
     /**

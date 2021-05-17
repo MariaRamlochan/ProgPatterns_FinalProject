@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 /**
  *
- * @author Natsu
+ * @author maria and nafees
  */
 public class ClientPage extends javax.swing.JFrame {
 
