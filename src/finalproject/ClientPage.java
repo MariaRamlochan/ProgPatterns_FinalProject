@@ -401,8 +401,7 @@ public class ClientPage extends javax.swing.JFrame {
 
         String str = "";
 
-        //str += res.getString("key17") + "\n";
-        str += "Booking a flight" + "\n";
+        str += res.getString("key17") + "\n";
         str += flightController.updateView(Flight.viewBookedFlights());
 
         bookPassNTextField.setText("");
@@ -418,8 +417,7 @@ public class ClientPage extends javax.swing.JFrame {
 
         String str = "";
 
-        //str += res.getString("key18") + "\n";
-        str += "Cancel Reservation" + "\n";
+        str += res.getString("key18") + "\n";
         str += clientController.updateView(Flight.viewBookedFlights());
 
         cancelResTextField.setText("");

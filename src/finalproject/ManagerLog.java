@@ -550,8 +550,7 @@ public class ManagerLog extends javax.swing.JFrame {
 
         String str = "";
 
-        //str += res.getString("key4") + "\n";
-        str += "View Reserved Board" + "\n";
+        str += res.getString("key4") + "\n";
         str += flightController.updateView(Flight.viewBookedFlights());
 
         displayTextArea.setText(str);
@@ -582,8 +581,7 @@ public class ManagerLog extends javax.swing.JFrame {
 
         String str = "";
 
-        //str += "\n" + res.getString("key14") + " " + flightNumTextField.getText();
-        str += "Removed Flight " + flightNumTextField.getText() + "\n";
+        str += "\n" + res.getString("key14") + " " + flightNumTextField.getText();
         str += flightController.updateView(Flight.viewBoard());
 
         flightNumTextField.setText("");
@@ -627,8 +625,7 @@ public class ManagerLog extends javax.swing.JFrame {
 
         String str = "";
 
-        //str += res.getString("key13" + cancelPNTextField.getText());
-        str += "Cancel Reservation";
+        str += res.getString("key13" + cancelPNTextField.getText());
         str += flightController.updateView(Flight.viewBookedFlights());
 
         cancelPNTextField.setText("");
@@ -652,8 +649,7 @@ public class ManagerLog extends javax.swing.JFrame {
 
         String str = "";
 
-        //str += res.getString("key16" + flight);
-        str += "Add Flight";
+        str += res.getString("key16");
         str += flightController.updateView(Flight.viewBoard());
         
         displayTextArea.setText(str);
@@ -661,9 +657,7 @@ public class ManagerLog extends javax.swing.JFrame {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        this.setVisible(false);
-        FlightLogin fl = new FlightLogin();
-        fl.setVisible(true);
+        // TODO add your handling code here:
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
