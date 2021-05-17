@@ -10,7 +10,7 @@ import java.util.*;
  * Client can Search flights by origin, destination, or duration.
  * Client can View the board of flights (all flights accepting reservation)
  * 
- * @author maria and nafees
+ * @author Maria and Nafees
  */
 public class Client {
 

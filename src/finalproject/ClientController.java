@@ -5,7 +5,7 @@ import java.util.*;
 
 /**
  * Class to control the client through a controller
- * @author maria and nafees
+ * @author Maria and Nafees
  */
 public class ClientController {
     

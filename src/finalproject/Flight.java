@@ -6,8 +6,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
- *
- * @author maria
+ * Class to create a Flight.
+ * Can add a flight to the board.
+ * Can remove a flight from the board.
+ * Can change data of any flight from the board.
+ * Can issue a ticket when a seat is booked.
+ * Can cancel a flight and update the number of seats when a flight is cancelled. 
+ * Can view the board of flights (flights that are full and flights accepting reservation)
+ * Can view reserved flights with information about clients who booked a flight.
+
+ * @author Maria and Nafees
  */
 public class Flight {
 
@@ -57,8 +65,8 @@ public class Flight {
      * to the board, sets “available” to the same value as “seats“. A true value
      * is returned by the method if the flight is successfully inserted.
      *
-     * @param flight
-     * @return true or false
+     * @param flight a flight
+     * @return a Boolean value of either true or false
      */
     public boolean addFlight(Flight flight) {
         flight.available = flight.seats;
@@ -83,8 +91,8 @@ public class Flight {
      * Flights table. A true value is returned by the method if the flight is
      * successfully removed.
      *
-     * @param flightN
-     * @return true or false
+     * @param flightN the flight number
+     * @return a Boolean value of either true or false
      */
     public boolean removerFlight(String flightN) {
         try (Statement stmt = flightConn.createStatement()) {
@@ -105,10 +113,10 @@ public class Flight {
      * of the flight origin, its destination, or duration. A true value is
      * returned by the method if the update was successful.
      *
-     * @param flightN
-     * @param field
-     * @param newValue
-     * @return true or false
+     * @param flightN the flight number
+     * @param field the field (either origin, destination or duration)
+     * @param newValue the new value
+     * @return a Boolean value of either true or false
      */
     public boolean updateFlightData(String flightN, String field, String newValue) {
         try (Statement stmt = flightConn.createStatement()) {
@@ -131,9 +139,9 @@ public class Flight {
      * table is added. The two methods return true if the flight was
      * successfully booked.
      *
-     * @param c
-     * @param flight
-     * @return true or false
+     * @param c a client
+     * @param flight the flight number
+     * @return a Boolean value of either true or false
      */
     public boolean issueTicket(Client c, String flight) {
         DateTimeFormatter dtf = DateTimeFormatter.BASIC_ISO_DATE;
@@ -170,7 +178,6 @@ public class Flight {
                 System.err.println(e.getClass().getName() + ": " + e.getMessage());
                 System.exit(0);
          }
-
         return false;
     }
 
@@ -182,9 +189,9 @@ public class Flight {
      * will be increased by one. The two methods return true if the flight was
      * successfully cancelled.
      *
-     * @param ticket
-     * @param passN
-     * @return true or false
+     * @param ticket the ticket number
+     * @param passN the passport number
+     * @return a Boolean value of either true or false
      */
     public boolean cancelFlight(int ticket, int passN) {
         try (Statement stmt = reserveConn.createStatement()) {
@@ -206,7 +213,7 @@ public class Flight {
      * sorted by “flightN”. viewFlightBoard() displays only flights with
      * available seats.
      *
-     * @return map
+     * @return a map
      */
     public static Map<String, String> viewBoard() {
         Map<String, String> map = new HashMap();
@@ -243,7 +250,7 @@ public class Flight {
      * Retrieves all data from ReservedFlights table and returns them as a map.
      * The map is sorted by “flightN”.
      *
-     * @return map
+     * @return a map
      */
     public static Map<String, String> viewBookedFlights() {
         Map<String, String> map = new HashMap();

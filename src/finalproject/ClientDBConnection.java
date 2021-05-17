@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 /**
  * Class to create a database connection for the client
- * @author maria and nafees
+ * @author Maria and Nafees
  */
 public class ClientDBConnection {
     
