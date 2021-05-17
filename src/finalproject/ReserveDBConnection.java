@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
- * @author maria and nafees
+ * Class to create a database connection for the reserved flight
+ * @author Maria and Nafees
  */
 public class ReserveDBConnection {
 

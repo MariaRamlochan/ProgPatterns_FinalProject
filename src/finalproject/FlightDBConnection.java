@@ -3,8 +3,8 @@ package finalproject;
 import java.sql.*;
 
 /**
- *
- * @author maria and nafees
+ * Class to create a database connection for the flight
+ * @author Maria and Nafees
  */
 public class FlightDBConnection {
     private static Connection connect;
