@@ -66,6 +66,7 @@ public class ClientPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        displayTextField.setEditable(false);
         displayTextField.setColumns(20);
         displayTextField.setRows(5);
         displayTextField.setName(""); // NOI18N

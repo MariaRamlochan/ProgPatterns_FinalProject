@@ -92,6 +92,7 @@ public class ManagerLog extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        displayTextArea.setEditable(false);
         displayTextArea.setColumns(20);
         displayTextArea.setRows(5);
         jScrollPane1.setViewportView(displayTextArea);
