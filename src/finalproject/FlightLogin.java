@@ -116,13 +116,20 @@ public class FlightLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     *method to transition to the ManageLog class GUI
+     * @param evt
+     */
     private void managerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerButtonActionPerformed
         this.setVisible(false);
         ManagerLog ml = new ManagerLog();
         ml.setVisible(true);
     }//GEN-LAST:event_managerButtonActionPerformed
 
+    /**
+     * method to transition to the ClientPage class GUI
+     * @param evt 
+     */
     private void clientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientButtonActionPerformed
         this.setVisible(false);
         ClientPage cp = new ClientPage();

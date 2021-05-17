@@ -294,6 +294,10 @@ public class ClientPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * method to view Flight table
+     * @param evt 
+     */
     private void viewFlightBoardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFlightBoardButtonActionPerformed
         displayTextField.setText("");
 
@@ -305,18 +309,30 @@ public class ClientPage extends javax.swing.JFrame {
         displayTextField.setText(str);
     }//GEN-LAST:event_viewFlightBoardButtonActionPerformed
 
+    /**
+     * method to choose the english language
+     * @param evt 
+     */
     private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
         displayTextField.setText("");
         Locale locale = new Locale("en", "CA");
         res = ResourceBundle.getBundle("finalproject/file", locale);
     }//GEN-LAST:event_englishButtonActionPerformed
 
+    /**
+     * method to choose the french language
+     * @param evt 
+     */
     private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
         displayTextField.setText("");
         Locale locale = new Locale("fr", "CA");
         res = ResourceBundle.getBundle("finalproject/file", locale);
     }//GEN-LAST:event_frenchButtonActionPerformed
 
+    /**
+     * method to search a flight by destination
+     * @param evt 
+     */
     private void searchBDestinationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBDestinationButtonActionPerformed
         displayTextField.setText("");
 
@@ -341,6 +357,10 @@ public class ClientPage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_searchBDestinationButtonActionPerformed
 
+    /**
+     * method to search a flight by duration
+     * @param evt 
+     */
     private void searchBDurationButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBDurationButton1ActionPerformed
        displayTextField.setText("");
 
@@ -364,6 +384,10 @@ public class ClientPage extends javax.swing.JFrame {
         originTextField.setText("");
     }//GEN-LAST:event_searchBDurationButton1ActionPerformed
 
+    /**
+     * method to search a flight by origin
+     * @param evt 
+     */
     private void searchBOriginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBOriginButton2ActionPerformed
          displayTextField.setText("");
 
@@ -387,6 +411,10 @@ public class ClientPage extends javax.swing.JFrame {
         originTextField.setText("");
     }//GEN-LAST:event_searchBOriginButton2ActionPerformed
 
+    /**
+     * method to book a flight
+     * @param evt 
+     */
     private void bookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookButtonActionPerformed
         displayTextField.setText("");
 
@@ -410,6 +438,10 @@ public class ClientPage extends javax.swing.JFrame {
         displayTextField.setText(str);
     }//GEN-LAST:event_bookButtonActionPerformed
 
+    /**
+     * method to cancel a fight
+     * @param evt 
+     */
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         displayTextField.setText("");
 
@@ -425,6 +457,10 @@ public class ClientPage extends javax.swing.JFrame {
         displayTextField.setText(str);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    /**
+     * button to go  back to the login page
+     * @param evt 
+     */
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.setVisible(false);
         FlightLogin fl = new FlightLogin();

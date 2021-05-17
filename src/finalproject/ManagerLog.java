@@ -31,8 +31,8 @@ public class ManagerLog extends javax.swing.JFrame {
 
     public ManagerLog() {
         initComponents();
-        englishButton.doClick();
-        destinationRadioButton.doClick();
+        englishButton.doClick(); //setting the english language as default
+        destinationRadioButton.doClick(); //setting DEST as default
     }
 
     /**
@@ -522,18 +522,30 @@ public class ManagerLog extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * method to choose the english language
+     * @param evt 
+     */
     private void englishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_englishButtonActionPerformed
         displayTextArea.setText("");
         Locale locale = new Locale("en", "CA");
         res = ResourceBundle.getBundle("finalproject/file", locale);
     }//GEN-LAST:event_englishButtonActionPerformed
 
+    /**
+     * method to choose the french language
+     * @param evt 
+     */
     private void frenchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frenchButtonActionPerformed
         displayTextArea.setText("");
         Locale locale = new Locale("fr", "CA");
         res = ResourceBundle.getBundle("finalproject/file", locale);
     }//GEN-LAST:event_frenchButtonActionPerformed
 
+    /**
+     * method to display the Flight Board
+     * @param evt 
+     */
     private void displayBoardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBoardButtonActionPerformed
         displayTextArea.setText("");
 
@@ -545,6 +557,10 @@ public class ManagerLog extends javax.swing.JFrame {
         displayTextArea.setText(str);
     }//GEN-LAST:event_displayBoardButtonActionPerformed
 
+    /**
+     * method to view the flight reservation table
+     * @param evt 
+     */
     private void viewReservedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReservedButtonActionPerformed
         displayTextArea.setText("");
 
@@ -556,6 +572,10 @@ public class ManagerLog extends javax.swing.JFrame {
         displayTextArea.setText(str);
     }//GEN-LAST:event_viewReservedButtonActionPerformed
 
+    /**
+     * method to issue a ticket
+     * @param evt 
+     */
     private void issueTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueTicketButtonActionPerformed
         displayTextArea.setText("");
 
@@ -574,6 +594,10 @@ public class ManagerLog extends javax.swing.JFrame {
         displayTextArea.setText(str);
     }//GEN-LAST:event_issueTicketButtonActionPerformed
 
+    /**
+     * method to remove a flight from the flight table
+     * @param evt 
+     */
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         displayTextArea.setText("");
 
@@ -589,6 +613,10 @@ public class ManagerLog extends javax.swing.JFrame {
         displayTextArea.setText(str);
     }//GEN-LAST:event_removeButtonActionPerformed
 
+    /**
+     * method to update a flight from the Flight table
+     * @param evt 
+     */
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         displayTextArea.setText("");
 
@@ -617,6 +645,10 @@ public class ManagerLog extends javax.swing.JFrame {
         displayTextArea.setText(str);
     }//GEN-LAST:event_updateButtonActionPerformed
 
+    /**
+     * method to cancel a reservation in the reservation table
+     * @param evt 
+     */
     private void cancelFlightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelFlightButtonActionPerformed
         displayTextArea.setText("");
 
@@ -634,6 +666,10 @@ public class ManagerLog extends javax.swing.JFrame {
         displayTextArea.setText(str);
     }//GEN-LAST:event_cancelFlightButtonActionPerformed
 
+    /**
+     * method to add a new Flight in the Flight table
+     * @param evt 
+     */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         displayTextArea.setText("");
 
@@ -656,8 +692,14 @@ public class ManagerLog extends javax.swing.JFrame {
 
     }//GEN-LAST:event_addButtonActionPerformed
 
+    /**
+     * method to go back to the login page
+     * @param evt 
+     */
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        FlightLogin fl = new FlightLogin();
+        fl.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
