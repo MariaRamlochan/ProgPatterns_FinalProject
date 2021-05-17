@@ -4,13 +4,16 @@ import java.sql.*;
 import java.util.*;
 
 /**
- *
- * @author maria
+ * Class to control the flight through a controller
+ * @author Maria and Nafees
  */
 public class FlightController {
 
+    //Data members
     private List<Flight> model;
     private FlightView view;
+    
+    //Flight and ReservedFlights connection
     private final Connection flightConn = FlightDBConnection.getInstance();
     private final Connection reserveConn = ReserveDBConnection.getInstance();
 
@@ -19,6 +22,10 @@ public class FlightController {
         this.view = view;
     }
 
+    /**
+     * Create a table of flights
+     * @param sqlStatement the sql statement
+     */
     public void createFlightsTable(String sqlStatement) {
         try (Statement stmt = flightConn.createStatement()) {
             stmt.executeUpdate("DROP TABLE IF EXISTS FLIGHTS;");
@@ -29,6 +36,10 @@ public class FlightController {
         }
     }
 
+    /**
+     * Create a table of reserved flights
+     * @param sqlStatement the sql statement 
+     */
     public void createReservedFlightsTable(String sqlStatement) {
         try (Statement stmt = reserveConn.createStatement()) {
             stmt.executeUpdate("DROP TABLE IF EXISTS RESERVEDFLIGHTS;");
@@ -39,6 +50,11 @@ public class FlightController {
         }
     }
 
+    /**
+     * Method to update the view of the flight
+     * @param model a map of the flight's
+     * @return a string of the printed flights from the map
+     */
     public String updateView(Map model) {
         return FlightView.printFlightDetails(model);
     }
