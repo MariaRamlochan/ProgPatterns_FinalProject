@@ -72,89 +72,89 @@ public class FinalProject {
                 + " CONSTRAINT FK_RESERVE_PASSNUM FOREIGN KEY(PASSNUM)"
                 + " REFERENCES CLIENTS(PASSNUM))";
 
-        flightController.createFlightsTable(SQL_CREATE_TABLE_FLIGHTS);
-       // System.out.println("\nTABLE RESERVEDFLIGHTS FLIGHTS");
-        System.out.println("\n" + res.getString("key1"));
-        clientController.createClientsTable(SQL_CREATE_TABLE_CLIENTS);
-        //System.out.println("\nTABLE RESERVEDFLIGHTS CLIENTS");
-        System.out.println("\n" + res.getString("key2"));
-        flightController.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
-        //System.out.println("\nTABLE RESERVEDFLIGHTS CREATED");
-        System.out.println("\n" + res.getString("key3"));
-
-        //view board
-        //System.out.println("\nView Board");
-        System.out.println("\n" + res.getString("key4"));
-        flightModel.forEach((fl) -> { flight.addFlight(fl); });
-        flightController.updateView(Flight.viewBoard());
-
-        //remove flight information
-        //System.out.println("\nremove flight number 1003");
-        System.out.println("\n" + res.getString("key5") + " 1003");
-        flight.removerFlight("1003");
-        flightController.updateView(Flight.viewBoard());
-
-        //updating flight information
-        //System.out.println("\nupdating flight to go to Hawaii");
-        System.out.println("\n" + res.getString("key6") + " 1004 " + res.getString("key7") + " Hawaii");
-        flight.updateFlightData("1004", "DEST", "Hawaii");
-        flightController.updateView(Flight.viewBoard());
-
-        //view the client table
-        //System.out.println("\nview the client table");
-        System.out.println("\n" + res.getString("key8"));
-        clientModel.forEach((cl) -> { client.addClient(cl); });
-        clientController.updateView(Client.viewBoard());
-
-        //issues ticket
-        //System.out.println("\nTrying to issue a ticket");
-        System.out.println("\n" + res.getString("key9"));
-        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5001) flight.issueTicket(cl, "1004"); });
-        flightController.updateView(Flight.viewBookedFlights());
-        
-        //System.out.println("\n" + res.getString("key9"));
-        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5002) flight.issueTicket(cl, "1002"); });
-        flightController.updateView(Flight.viewBookedFlights());
-        
-        //Book a flight
-        System.out.println("\nBooking a flight");
-        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5003) 
-        { if(client.bookASeat("1004") == true) { flight.issueTicket(cl, "1004");   
-        }}
-        });
-        flightController.updateView(Flight.viewBookedFlights());
-        
-        //Cancel flight (Flight class)
-        System.out.println("\nCancel flight");
-        //System.out.println("\n" + res.getString("key5") + " 1003");
-        flight.cancelFlight(1, 5003);
-        flightController.updateView(Flight.viewBookedFlights());
-        
-        //Cancel Reservation (Client class)
-        System.out.println("\nCancel Reservation");
-        client.cancelResservation(2);
-        clientController.updateView(Flight.viewBookedFlights());
-        
-        //searching by destination
-        System.out.println("\n" + res.getString("key10"));
-        client.searchFlightByDest("Hawaii").forEach(dest
-                -> {
-            System.out.println(dest.toString());
-        });
-
-        //searching by duration
-        System.out.println("\n" + res.getString("key11"));
-        client.searchFlightByDuration(405).forEach(dur
-                -> {
-            System.out.println(dur.toString());
-        });
-
-        //searching by origin
-        System.out.println("\n" + res.getString("key12"));
-        client.searchFlighByOrigin("Toronto").forEach(ori
-                -> {
-            System.out.println(ori.toString());
-        });
+//        flightController.createFlightsTable(SQL_CREATE_TABLE_FLIGHTS);
+//       // System.out.println("\nTABLE RESERVEDFLIGHTS FLIGHTS");
+//        System.out.println("\n" + res.getString("key1"));
+//        clientController.createClientsTable(SQL_CREATE_TABLE_CLIENTS);
+//        //System.out.println("\nTABLE RESERVEDFLIGHTS CLIENTS");
+//        System.out.println("\n" + res.getString("key2"));
+//        flightController.createReservedFlightsTable(SQL_CREATE_TABLE_RESERVEDFLIGHTS);
+//        //System.out.println("\nTABLE RESERVEDFLIGHTS CREATED");
+//        System.out.println("\n" + res.getString("key3"));
+//
+//        //view board
+//        //System.out.println("\nView Board");
+//        System.out.println("\n" + res.getString("key4"));
+//        flightModel.forEach((fl) -> { flight.addFlight(fl); });
+//        flightController.updateView(Flight.viewBoard());
+//
+//        //remove flight information
+//        //System.out.println("\nremove flight number 1003");
+//        System.out.println("\n" + res.getString("key5") + " 1003");
+//        flight.removerFlight("1003");
+//        flightController.updateView(Flight.viewBoard());
+//
+//        //updating flight information
+//        //System.out.println("\nupdating flight to go to Hawaii");
+//        System.out.println("\n" + res.getString("key6") + " 1004 " + res.getString("key7") + " Hawaii");
+//        flight.updateFlightData("1004", "DEST", "Hawaii");
+//        flightController.updateView(Flight.viewBoard());
+//
+//        //view the client table
+//        //System.out.println("\nview the client table");
+//        System.out.println("\n" + res.getString("key8"));
+//        clientModel.forEach((cl) -> { client.addClient(cl); });
+//        clientController.updateView(Client.viewBoard());
+//
+//        //issues ticket
+//        //System.out.println("\nTrying to issue a ticket");
+//        System.out.println("\n" + res.getString("key9"));
+//        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5001) flight.issueTicket(cl, "1004"); });
+//        flightController.updateView(Flight.viewBookedFlights());
+//        
+//        //System.out.println("\n" + res.getString("key9"));
+//        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5002) flight.issueTicket(cl, "1002"); });
+//        flightController.updateView(Flight.viewBookedFlights());
+//        
+//        //Book a flight
+//        System.out.println("\nBooking a flight");
+//        clientModel.forEach((cl) -> { if (cl.getPassNumber() == 5003) 
+//        { if(client.bookASeat("1004") == true) { flight.issueTicket(cl, "1004");   
+//        }}
+//        });
+//        flightController.updateView(Flight.viewBookedFlights());
+//        
+//        //Cancel flight (Flight class)
+//        System.out.println("\nCancel flight");
+//        //System.out.println("\n" + res.getString("key5") + " 1003");
+//        flight.cancelFlight(1, 5003);
+//        flightController.updateView(Flight.viewBookedFlights());
+//        
+//        //Cancel Reservation (Client class)
+//        System.out.println("\nCancel Reservation");
+//        client.cancelResservation(2);
+//        clientController.updateView(Flight.viewBookedFlights());
+//        
+//        //searching by destination
+//        System.out.println("\n" + res.getString("key10"));
+//        client.searchFlightByDest("Hawaii").forEach(dest
+//                -> {
+//            System.out.println(dest.toString());
+//        });
+//
+//        //searching by duration
+//        System.out.println("\n" + res.getString("key11"));
+//        client.searchFlightByDuration(405).forEach(dur
+//                -> {
+//            System.out.println(dur.toString());
+//        });
+//
+//        //searching by origin
+//        System.out.println("\n" + res.getString("key12"));
+//        client.searchFlighByOrigin("Toronto").forEach(ori
+//                -> {
+//            System.out.println(ori.toString());
+//        });
         
         //view flight board
     }
