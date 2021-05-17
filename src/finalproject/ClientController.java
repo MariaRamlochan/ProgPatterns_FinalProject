@@ -27,7 +27,7 @@ public class ClientController {
         }
     }
     
-    public void updateView(Map model) {
-        ClientView.printClientDetails(model);
+    public String updateView(Map model) {
+        return ClientView.printClientDetails(model);
     }
 }

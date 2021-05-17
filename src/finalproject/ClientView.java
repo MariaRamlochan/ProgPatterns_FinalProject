@@ -12,7 +12,7 @@ import java.util.Map;
  * @author Natsu
  */
 public class ClientView {
-    public static void printClientDetails(Map map) {
-        System.out.println(map);
+    public static String printClientDetails(Map map) {
+        return map.toString();
     }
 }
