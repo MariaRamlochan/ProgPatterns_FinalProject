@@ -92,6 +92,7 @@ public class ManagerLog extends javax.swing.JFrame {
         addSeatTextField = new javax.swing.JTextField();
         addAmountTextField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -261,6 +262,13 @@ public class ManagerLog extends javax.swing.JFrame {
                 addButtonActionPerformed(evt);
             }
         });
+
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,56 +354,62 @@ public class ManagerLog extends javax.swing.JFrame {
                                 .addGap(138, 138, 138)
                                 .addComponent(issueTicketButton)))
                         .addGap(272, 272, 272)))
-                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addGap(91, 91, 91)
-                                        .addComponent(addNameTextField))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel15)
-                                        .addGap(89, 89, 89)
-                                        .addComponent(addOriTextField))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addGap(43, 43, 43)
-                                        .addComponent(addDestTextField))
+                                .addComponent(jLabel17)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabel14)
+                                                .addGap(91, 91, 91)
+                                                .addComponent(addNameTextField))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabel15)
+                                                .addGap(89, 89, 89)
+                                                .addComponent(addOriTextField))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabel16)
+                                                .addGap(43, 43, 43)
+                                                .addComponent(addDestTextField))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel13)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(addFNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel18)
-                                                    .addComponent(jLabel19))
-                                                .addGap(73, 73, 73)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(addSeatTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(addDurTextField)
-                                                    .addComponent(addAmountTextField)))))
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(58, 58, 58))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(228, 228, 228)
-                                .addComponent(addButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(displayBoardButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(viewReservedButton))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel13)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(addFNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(jLabel18)
+                                                            .addComponent(jLabel19))
+                                                        .addGap(73, 73, 73)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(addSeatTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(addDurTextField)
+                                                            .addComponent(addAmountTextField)))))
+                                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(58, 58, 58))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(228, 228, 228)
+                                        .addComponent(addButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(displayBoardButton)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(viewReservedButton))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backButton)
+                        .addGap(82, 82, 82))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,7 +507,9 @@ public class ManagerLog extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)))
                         .addGap(10, 10, 10)
-                        .addComponent(cancelFlightButton))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cancelFlightButton)
+                            .addComponent(backButton)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -644,6 +660,12 @@ public class ManagerLog extends javax.swing.JFrame {
 
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        this.setVisible(false);
+        FlightLogin fl = new FlightLogin();
+        fl.setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -741,6 +763,7 @@ public class ManagerLog extends javax.swing.JFrame {
     private javax.swing.JTextField addNameTextField;
     private javax.swing.JTextField addOriTextField;
     private javax.swing.JTextField addSeatTextField;
+    private javax.swing.JButton backButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelFlightButton;
     private javax.swing.JTextField cancelPNTextField;

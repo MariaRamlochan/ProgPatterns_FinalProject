@@ -67,6 +67,7 @@ public class ClientPage extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,6 +166,13 @@ public class ClientPage extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel9.setText("Ticket Number: ");
 
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,8 +231,13 @@ public class ClientPage extends javax.swing.JFrame {
                         .addComponent(viewFlightBoardButton)
                         .addGap(106, 106, 106))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(231, 231, 231)
-                .addComponent(cancelButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(cancelButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -276,7 +289,9 @@ public class ClientPage extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
                         .addComponent(viewFlightBoardButton)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(backButton)
+                .addContainerGap())
         );
 
         viewFlightBoardButton.getAccessibleContext().setAccessibleName("jViewFBoardButton");
@@ -417,6 +432,12 @@ public class ClientPage extends javax.swing.JFrame {
         displayTextField.setText(str);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        this.setVisible(false);
+        FlightLogin fl = new FlightLogin();
+        fl.setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -507,6 +528,7 @@ public class ClientPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DurationTextField;
+    private javax.swing.JButton backButton;
     private javax.swing.JButton bookButton;
     private javax.swing.JTextField bookFNTextField;
     private javax.swing.JTextField bookPassNTextField;
