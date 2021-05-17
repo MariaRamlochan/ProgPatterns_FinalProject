@@ -5,13 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
- * @author Natsu
+ * Class to create a database connection for the client
+ * @author maria and nafees
  */
 public class ClientDBConnection {
-
+    
+    //Data members
     private static Connection connect;
 
+    /**
+     * Method to get the instance of the connection
+     * @return a connection
+     */
     public static Connection getInstance() {
         if (connect == null) {
             connect = createConnection();
@@ -19,6 +24,10 @@ public class ClientDBConnection {
         return connect;
     }
 
+    /**
+     * Method to create a connection
+     * @return a connection
+     */
     public static Connection createConnection() {
         try {
             Class.forName("org.sqlite.JDBC");

@@ -8,6 +8,7 @@ import java.util.*;
  * @author maria and nafees
  */
 public class ClientController {
+    
     //Data members
     private List<Client> model;
     private ClientView view;
