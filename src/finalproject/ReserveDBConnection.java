@@ -6,10 +6,11 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Natsu
+ * @author maria and nafees
  */
 public class ReserveDBConnection {
 
+    //Data members
     private static Connection connect;
 
     public static Connection getInstance() {
@@ -19,6 +20,10 @@ public class ReserveDBConnection {
         return connect;
     }
 
+    /**
+     * create the connection to the database
+     * @return c or null
+     */
     public static Connection createConnection() {
         try {
             Class.forName("org.sqlite.JDBC");

@@ -4,7 +4,7 @@ import java.sql.*;
 
 /**
  *
- * @author maria
+ * @author maria and nafees
  */
 public class FlightDBConnection {
     private static Connection connect;
@@ -15,6 +15,10 @@ public class FlightDBConnection {
         return connect;
     }
   
+    /**
+     * this method creates the connection to the database
+     * @return c
+     */
     public static Connection createConnection() {
         Connection c = null;
         try {
