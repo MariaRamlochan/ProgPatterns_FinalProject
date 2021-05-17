@@ -65,6 +65,7 @@ public class ClientPage extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Client Page");
 
         displayTextField.setEditable(false);
         displayTextField.setColumns(20);
@@ -349,13 +350,13 @@ public class ClientPage extends javax.swing.JFrame {
         });
 
         str += list;
-
-        displayTextField.setText(str);
-        viewFlightBoardButton.setEnabled(true);
+        
         destinationTextField.setText("");
         DurationTextField.setText("");
         originTextField.setText("");
 
+        displayTextField.setText(str);
+        viewFlightBoardButton.setEnabled(true);
     }//GEN-LAST:event_searchBDestinationButtonActionPerformed
 
     /**

@@ -91,6 +91,7 @@ public class ManagerLog extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Manager Page");
 
         displayTextArea.setEditable(false);
         displayTextArea.setColumns(20);
@@ -586,6 +587,9 @@ public class ManagerLog extends javax.swing.JFrame {
 
         str += "\n" + res.getString("key9") + "\n";
         str += flightController.updateView(Flight.viewBookedFlights());
+        
+        clientTextField.setText("");
+        ticketNumTextField.setText("");
 
         displayTextArea.setText(str);
     }//GEN-LAST:event_issueTicketButtonActionPerformed
@@ -683,6 +687,14 @@ public class ManagerLog extends javax.swing.JFrame {
 
         str += res.getString("key16");
         str += flightController.updateView(Flight.viewBoard());
+        
+        addFNTextField.setText("");
+        addNameTextField.setText("");
+        addOriTextField.setText("");
+        addDestTextField.setText("");
+        addDurTextField.setText("");
+        addSeatTextField.setText("");
+        addAmountTextField.setText("");
         
         displayTextArea.setText(str);
     }//GEN-LAST:event_addButtonActionPerformed

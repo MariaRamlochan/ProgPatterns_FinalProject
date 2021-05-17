@@ -31,6 +31,7 @@ public class FlightLogin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
 
         managerButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         managerButton.setText("Manager");
