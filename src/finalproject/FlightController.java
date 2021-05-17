@@ -24,7 +24,7 @@ public class FlightController {
 
     /**
      * Create a table of flights
-     * @param sqlStatement the sql statement
+     * @param sqlStatement the SQL statement
      */
     public void createFlightsTable(String sqlStatement) {
         try (Statement stmt = flightConn.createStatement()) {
@@ -38,7 +38,7 @@ public class FlightController {
 
     /**
      * Create a table of reserved flights
-     * @param sqlStatement the sql statement 
+     * @param sqlStatement the SQL statement 
      */
     public void createReservedFlightsTable(String sqlStatement) {
         try (Statement stmt = reserveConn.createStatement()) {
