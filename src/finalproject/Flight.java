@@ -157,11 +157,11 @@ public class Flight {
                 int availableF = rs.getInt("AVAILABLE");
                 
                 if (availableF > 0) {
-                    ticketN++;
+                    //ticketN++;
                     try (Statement stmt2 = reserveConn.createStatement()) {
                         String sql2 = "INSERT INTO RESERVEDFLIGHTS (TICKETN, FLIGHTN, "
                                 + "PASSNUM, FLNAME, ISSUEDATE, CONTACT, AMOUNT) "
-                                + "VALUES ('" + ticketN + "', '" +  flightNF + "', '"
+                                + "VALUES ('" + getTicketN() + 1 + "', '" +  flightNF + "', '"
                                 + c.getPassNumber() + "', '" + c.getFullName() + "', '"
                                 + dtf.format(LocalDateTime.now()) + "', '" 
                                 + c.getContact() + "', '" + amountF + "');";
@@ -408,6 +408,16 @@ public class Flight {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
+    public static int getTicketN() {
+        return ticketN;
+    }
+
+    public static void setTicketN(int ticketN) {
+        Flight.ticketN = ticketN;
+    }
+    
+    
 
     /**
      * toString method
